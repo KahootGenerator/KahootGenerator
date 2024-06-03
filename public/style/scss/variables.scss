@@ -1,7 +1,7 @@
 // Colors
 $beige: #f7f4e8;
 $light_blue: #9ac3ef;
-$orange: #ffa41c;
+$yellow: #ffa41c;
 $purple: #b97bf1;
 $blue: #1298f1;
 $red: #e21b3c;
@@ -10,4 +10,13 @@ $w: #fff;
 $b: #000;
 
 // Sizes
+$padding: 0.5rem 1.2rem;
 $br: 0.8rem;
+
+// Placeholders
+%input_button_styles {
+  padding: $padding;
+  border: solid $b 2px;
+  border-bottom: solid $b 5px;
+  border-radius: $br;
+}

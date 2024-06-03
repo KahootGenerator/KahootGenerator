@@ -1,9 +1,6 @@
 .text_field {
+  @extend %input_button_styles;
   background-color: $beige;
-  padding: 0.5rem 1.2rem;
-  border: solid $b 2px;
-  border-bottom: solid $b 5px;
-  border-radius: $br;
   &:focus {
     border-color: $light_blue;
   }
