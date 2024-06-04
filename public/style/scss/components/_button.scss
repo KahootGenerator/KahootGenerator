@@ -1,0 +1,44 @@
+@mixin button($color, $width: 200px) {
+  background-color: $color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: $width;
+  border: 1px solid black;
+  border-radius: $border-radius-medium;
+  border-width: $border-width-m;
+  transition: all 0.8ms;
+
+  &:active {
+    transform: translateY(1px);
+    border-width: 2px;
+  }
+
+  @if ($color == $color-red) {
+    width: 50px !important;
+
+    & > img {
+      height: 26px;
+      width: 24px;
+    }
+  }
+}
+
+.button {
+  &-purple {
+    @include button($color-purple);
+  }
+
+  &-orange {
+    @include button($color-orange);
+  }
+
+  &-lightblue {
+    @include button($color-lightblue);
+  }
+
+  &-red {
+    @include button($color-red);
+  }
+}
