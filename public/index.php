@@ -34,11 +34,12 @@ $Router->get('/kahoot/generate/', 'ViewController@showGenerate');
 $Router->post('/kahoot/generate/attempt/', 'KahootController@generateAttemps');
 
 // Account
-$Router->get('/login/', 'ViewController@showLogin');
-$Router->post('/login/attempt/', 'UserController@login');
-$Router->get('/register/', 'ViewController@showRegister');
-$Router->post('/register/attempt/', 'UserController@register');
-$Router->post('/logout/', 'UserController@logout');
+$Router->get('/account/', 'ViewController@showAccount');
+$Router->get('/account/login/', 'ViewController@showLogin');
+$Router->post('/account/login/attempt/', 'UserController@login');
+$Router->get('/account/register/', 'ViewController@showRegister');
+$Router->post('/account/register/attempt/', 'UserController@register');
+$Router->post('/account/logout/', 'UserController@logout');
 
 try {
     $Router->run();
