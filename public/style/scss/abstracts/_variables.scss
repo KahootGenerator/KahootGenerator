@@ -24,12 +24,12 @@ $bg-question-4: $color-green;
 
 $border-width-m: 2px 2px 4px 2px;
 $border-width-l: 2px 2px 8px 2px;
-$border-width-xl: 2px 2px 10px 2px; 
+$border-width-xl: 2px 2px 10px 2px;
 
-$border-radius-high: 20px solid $color-black;
-$border-radius-medium: 10px solid $color-black;
+$border-radius-high: 20px;
+$border-radius-medium: 10px;
 
 // Box Shadow
 
-$shadow-thick: 0px 4px 200px 30px rgba(0,0,0,0.4);
-$shadow-light: 0px 5px 4px 0px rgba(0,0,0,0.25);
+$shadow-thick: 0px 4px 200px 30px rgba(0, 0, 0, 0.4);
+$shadow-light: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
