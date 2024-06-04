@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/autoload.php';
+require '../src/Utils/Config.php';
 
 use App\Router;
 use ScssPhp\ScssPhp\Compiler;
