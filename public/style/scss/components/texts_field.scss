@@ -1,5 +1,5 @@
 .text_field {
-  @extend %input_button_styles;
+  @extend %inputs;
   background-color: $beige;
   &:focus {
     border-color: $light_blue;
