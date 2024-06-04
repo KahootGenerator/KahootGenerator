@@ -1,7 +1,0 @@
-.text_field {
-  @extend %inputs;
-  background-color: $beige;
-  &:focus {
-    border-color: $light_blue;
-  }
-}
