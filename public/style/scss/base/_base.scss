@@ -40,6 +40,10 @@ h4 {
     font-weight: 700;
 }
 
-button, input[type="button"], input[type="checkbox"], a {
+button,
+input[type="button"],
+input[type="checkbox"],
+a {
     cursor: pointer;
+    border: none;
 }
