@@ -1,0 +1,45 @@
+* {
+    user-select: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+span,
+p,
+a,
+i {
+    color: $color-black;
+}
+
+* {
+    font-family: "Mitr", sans-serif;
+    font-size: $font-xs;
+    font-weight: 300;
+}
+
+h1 {
+    font-family: "Madimi One", sans-serif;
+    font-size: $font-xl;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: $font-l;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: $font-m;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: $font-s;
+    font-weight: 700;
+}
+
+button, input[type="button"], input[type="checkbox"], a {
+    cursor: pointer;
+}
