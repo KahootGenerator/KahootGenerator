@@ -64,14 +64,8 @@ class Router {
                 return $route->call();
             }
         }
-
-        ob_start();
-
+        
         require_once "Views/errors/404.php";
-
-        $content = ob_get_clean();
-
-        require_once 'Views/layout/default.php';
 
         return null;
     }
