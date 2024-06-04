@@ -1,0 +1,81 @@
+.responses {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "a a";
+  gap: 1rem;
+
+  .checkbox-wrapper {
+    width: 40rem;
+
+    input[type="checkbox"] {
+      display: none;
+
+      &:checked
+        + .checkbox-wrapper--response
+        .checkbox-wrapper--response--checkbox {
+        background-color: $color-green;
+
+        img {
+          display: block;
+        }
+      }
+    }
+
+    &:nth-of-type(1) .checkbox-wrapper--response {
+      background-color: $color-red;
+    }
+
+    &:nth-of-type(2) .checkbox-wrapper--response {
+      background-color: $color-blue;
+    }
+
+    &:nth-of-type(3) .checkbox-wrapper--response {
+      background-color: $color-orange;
+    }
+
+    &:nth-of-type(4) .checkbox-wrapper--response {
+      background-color: $color-green;
+    }
+
+    &--response {
+      padding: 1rem 0;
+      border-radius: $border-radius-medium;
+      border: 1px solid $color-black;
+      border-width: $border-width-m;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      cursor: pointer;
+
+      &--checkbox {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: $color-white;
+        border: 2px solid $color-black;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.1s;
+
+        img {
+          display: none;
+          width: 60%;
+          height: 60%;
+        }
+      }
+
+      &--p {
+        width: 80%;
+        line-height: 1.5rem;
+        overflow-wrap: break-word; // Automatic line feed
+        word-wrap: break-word; // For older browsers
+      }
+
+      &--cross {
+        width: 2rem;
+      }
+    }
+  }
+}
