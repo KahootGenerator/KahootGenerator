@@ -34,6 +34,6 @@ abstract class Controller
 
         $content = ob_get_clean();
 
-        require_once '../src/Views/layout/default.php';
+        require_once '../src/Views/layout/layout.php';
     }
 }
