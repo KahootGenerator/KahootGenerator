@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 @mixin button($color, $width: 200px) {
   background-color: $color;
   display: flex;
