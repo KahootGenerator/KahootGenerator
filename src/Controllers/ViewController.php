@@ -1,12 +1,21 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Validator;
 
-final class ViewController extends Controller {
+final class ViewController extends Controller
+{
+    //render any view
+    //$this->render('index', ['title' => $this->getPageTitle()]);
 
-    //$this->render('index', ['title' => $this->pageTitle]);
+    function showIndex()
+    {
+        //set title
+        $this->setPageTitle("Kahoot Générator");
 
+        //render the view index
+        $this->render('index', ['title' => $this->getPageTitle()]);
+    }
 }
