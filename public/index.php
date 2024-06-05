@@ -28,10 +28,10 @@ $Router = new Router($_SERVER['REQUEST_URI']);
 // Kahoot
 $Router->get('/', 'ViewController@showIndex');
 $Router->get('/kahoot/', 'ViewController@showAllKahoot');
-$Router->get('/kahoot/:id/', 'ViewController@showOneKahoot');
-$Router->post('/kahoot/:id/delete/', 'KahootController@deleteKahoot');
 $Router->get('/kahoot/generate/', 'ViewController@showGenerate');
 $Router->post('/kahoot/generate/attempt/', 'KahootController@generate');
+$Router->get('/kahoot/:id/', 'ViewController@showOneKahoot');
+$Router->post('/kahoot/:id/delete/', 'KahootController@deleteKahoot');
 
 // Account
 $Router->get('/account/', 'ViewController@showAccount');
