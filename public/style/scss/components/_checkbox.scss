@@ -1,0 +1,33 @@
+@use '../abstracts/' as *;
+
+.checkbox {
+    display: none;
+    + label {
+        width: 30px;
+        height: 30px;
+        display: block;
+        position: relative;
+        background-color: $color-cream;
+        border-width: $border-width-m;
+        border-color: black;
+        border-style: solid;
+        border-radius: $border-radius-medium;
+        &:hover {
+            cursor: pointer;
+        }
+        img {
+            position: absolute;
+            top: -5px;
+            left: 2px;
+            display: none;
+        }
+    }
+    
+    &:checked + label {
+        img {
+            display: block;
+            width: 35px;
+            max-width: 35px;
+        }
+    }
+}
