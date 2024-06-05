@@ -1,6 +1,8 @@
+@use '../abstracts/' as *;
+
 header {
     width: 100vw;
-    padding: 20px 4vw;
+    padding: 1.5rem;
     border-bottom: black 2px solid;
     display: flex;
     flex-direction: row;
@@ -9,6 +11,7 @@ header {
     top: 0;
     left: 0;
     background-color: white;
+    box-shadow: $shadow-light;
     nav {
         margin: 10px 1vw;
         border-left: black solid 0.5px;
@@ -21,7 +24,24 @@ header {
         }
     }
     .logo {
-        width: 4vw;
-        height: 4vw;
+        width: 50px;
+        height: 50px;
+    }
+    .login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        width: 15rem;
+        border: 1px solid black;
+        border-radius: $border-radius-medium;
+        border-width: $border-width-m;
+        transition: all 0.8ms;
+        background-color: $color-purple;
+
+        &:active {
+            transform: translateY(1px);
+            border-width: 2px;
+        }
     }
 }
