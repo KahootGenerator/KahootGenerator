@@ -12,10 +12,10 @@
     <header>
         <img class="logo" src="/img/logo.png" alt="">
         <nav>
-            <a href="">lien 1</a>
-            <a href="">lien 2</a>
+            <a href="/">Accueil</a>
+            <a href="/kahoot/generate">Créer un kahoot</a>
         </nav>
-        <a href="">login/logout</a>
+        <button class="login">Créer un compte</button>
     </header>
     <main>
         <?= $content ?>
