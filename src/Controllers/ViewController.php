@@ -18,4 +18,12 @@ final class ViewController extends Controller
         //render the view index
         $this->render('index', ['title' => $this->getPageTitle()]);
     }
+    function showGenerate()
+    {
+        //set title
+        $this->setPageTitle("Choix des options !");
+
+        //render the view generate
+        $this->render('/kahoot/generate', ['title' => $this->getPageTitle()]);
+    }
 }
