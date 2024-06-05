@@ -53,7 +53,7 @@ final class Route {
 
     public function call(): mixed {
         $rep = explode("@", $this->getCallable());
-        $controller = "MVC\\Controllers\\".$rep[0];
+        $controller = "App\\Controllers\\".$rep[0];
 
         $controller = new $controller();
 
