@@ -1,0 +1,60 @@
+@use "../abstracts" as *;
+
+@mixin responseBtn($bg-color) {
+  .response {
+    width: 40rem;
+    padding: 1rem 0;
+    border-radius: $border-radius-medium;
+    border: 1px solid $color-black;
+    border-width: $border-width-m;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    cursor: pointer;
+    background-color: $bg-color;
+
+    &--checkbox {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: $color-white;
+      border: 2px solid $color-black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.1s;
+
+      img {
+        display: none;
+        width: 60%;
+        height: 60%;
+      }
+    }
+
+    &--p {
+      width: 80%;
+      line-height: 1.5rem;
+      overflow-wrap: break-word; // Automatic line feed
+      word-wrap: break-word; // For older browsers
+    }
+
+    &--cross {
+      width: 2rem;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + .response {
+      .response--checkbox {
+        img {
+          display: block !important;
+        }
+
+        background-color: $color-green !important;
+      }
+    }
+  }
+}
