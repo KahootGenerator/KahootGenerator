@@ -28,9 +28,9 @@ drop table if exists `user`;
 /*==============================================================*/
 create table `answer`
 (
-   id            int not null Auto_increment,
-   id_question          int not null,
-   id_kahoot            int not null,
+   id            varchar(13) not null,
+   id_question          varchar(13) not null,
+   id_kahoot            varchar(13) not null,
    libelle       varchar(75) not null,
    correct              bool not null,
    primary key (id)
@@ -53,8 +53,8 @@ INSERT INTO `difficulty`(libelle) VALUES ('Facile'), ('Moyen'), ('Difficile'), (
 /*==============================================================*/
 create table `kahoot`
 (
-   id            int not null Auto_increment,
-   id_user              int not null,
+   id            varchar(13) not null,
+   id_user              varchar(13) not null,
    id_difficulty        int not null,
    id_language          int not null,
    title         varchar(20) not null,
@@ -80,8 +80,8 @@ INSERT INTO `language`(libelle) VALUES ('Français'), ('Anglais');
 /*==============================================================*/
 create table `question`
 (
-   id          int not null Auto_increment,
-   id_kahoot            int not null,
+   id          varchar(13) not null,
+   id_kahoot            varchar(13) not null,
    id_time              int not null,
    question             varchar(120) not null,
    primary key (id, id_kahoot)
@@ -104,7 +104,7 @@ INSERT INTO `time`(seconds) VALUES (5), (10), (20), (30), (60), (90), (120), (24
 /*==============================================================*/
 create table `user`
 (
-   id              int not null Auto_increment,
+   id              varchar(13) not null,
    username             varchar(20) not null,
    password             varchar(255) not null,
    primary key (id)

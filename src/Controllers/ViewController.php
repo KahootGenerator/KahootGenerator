@@ -31,4 +31,12 @@ final class ViewController extends Controller
         //render the view generate
         $this->render('account/login');
     }
+
+    public function showOneKahoot(int $id): void {
+        //Set title
+        $this->setPageTitle("Votre Kahoot !");
+
+        //Render the view show
+        $this->render('/kahoot/show', ['title' => $this->getPageTitle()]);
+    }
 }

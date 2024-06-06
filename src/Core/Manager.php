@@ -14,7 +14,14 @@ namespace App\Core;
        protected PDO | null $_connexion;
 
         public $table;
-        public $id;
+
+        public function getTable(): string {
+            return $this->table;
+        }
+
+        public function setTable(string $table) {
+            $this->table = $table;
+        }
 
         public function getConnection(): void {
             $this->_connexion = null;
@@ -27,18 +34,18 @@ namespace App\Core;
             }
         }
 
-        public function getOne() {
+        public function getOne(string $id) {
             $sql = "SELECT * FROM :table WHERE id = :id";
 
             $query = $this->_connexion->prepare($sql);
 
-            $query->execute(array('table' => $this->table, 'id' => $this->id));
+            $query->execute(array('table' => $this->getTable(), 'id' => $this->id));
 
             return $query->fetch();
         }
 
         public function getAll() {
-            $sql = "SELECT * FROM ".$this->table;
+            $sql = "SELECT * FROM ".$this->getTable();
 
             return $this->_connexion->query($sql);
         }
