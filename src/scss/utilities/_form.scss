@@ -2,7 +2,7 @@
 
 @mixin formField($width) {
     height: fit-content;
-    width: fit-content;
+    width: $width;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -13,9 +13,13 @@
         font-size: $font-xs;
     }
 
-    input[type="text"], .select {
+    input[type="text"] {
         height: 50px;
-        width: $width !important;
+        width: 100% !important;
+    }
+
+    .select {
+        width: fit-content;
     }
 }
 
@@ -47,12 +51,19 @@
     @include formField(50%)
 }
 
+.form-field--double {
+    @include formField(100%);
+    flex-direction: row;
+}
+
 .form-field--checkbox {
     display: flex;
     gap: 15px;
+    cursor: pointer;
 
     label {
         font-family: $font-body;
-        font-size: $font-s;
+        font-size: $font-xs;
+        margin-left: 0;
     }
 }
