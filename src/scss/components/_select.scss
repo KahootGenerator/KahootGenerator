@@ -22,18 +22,14 @@ input[type="radio"] {
 
   &[open] {
     z-index: 1;
-    transform: translateY(-1px);
 
     summary {
-      border-width: 2px 2px 2px 2px;
       border-radius: 0;
       border-top-left-radius: $border-radius-medium;
       border-top-right-radius: $border-radius-medium;
 
       &:before {
         content: "";
-        width: 100vw;
-        height: 100vh;
         background: transparent;
         position: fixed;
         top: 0;
@@ -47,8 +43,8 @@ input[type="radio"] {
   }
 
   summary {
-    width: calc(100% - 1.55rem);
-    padding: 0.8rem;
+    width: calc(100% - 2.39rem);
+    padding: 0.5rem 1.2rem;
     cursor: pointer;
     background-color: $color-cream;
     border-width: $border-width-m;
@@ -66,7 +62,7 @@ input[type="radio"] {
       float: right;
       width: 1.5rem;
       height: 1.5rem;
-      background: url("../../../public/img/utils/arrow.svg") no-repeat center;
+      background: url("/img/utils/arrow.svg") no-repeat center;
       transform: rotate(90deg);
       transform-origin: center center;
       transition: transform ease-in-out 100ms;
@@ -74,6 +70,7 @@ input[type="radio"] {
   }
 
   ul {
+    transform: translateY(-2px);
     position: absolute;
     width: 100%;
     background-color: $color-cream;
@@ -86,25 +83,15 @@ input[type="radio"] {
 
     li {
       border-bottom: 2px solid $color-black;
-
-      &:hover {
-        background-color: darken($color-cream, 7%);
-      }
-
-      &:first-child {
-        padding-top: 0;
-      }
+      padding: 0.5rem 1.2rem;
 
       &:last-child {
-        border-bottom-left-radius: $border-radius-medium;
-        border-bottom-right-radius: $border-radius-medium;
-        padding-bottom: 0;
+
         border-bottom: none;
       }
 
       label {
         width: 100%;
-        padding: 0.9rem 1.3rem;
         display: flex;
         align-items: center;
         cursor: pointer;
