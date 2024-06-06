@@ -9,19 +9,6 @@ use `kahoot-generator`;
 
 /*==============================================================*/
 
-drop table if exists `answer`;
-
-drop table if exists `question`;
-
-drop table if exists `kahoot`;
-
-drop table if exists `difficulty`;
-
-drop table if exists `language`;
-
-drop table if exists `time`;
-
-drop table if exists `user`;
 
 /*==============================================================*/
 /* Table : answer                                               */
