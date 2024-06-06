@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 input[type="radio"] {
   counter-increment: radios;
   appearance: none;
