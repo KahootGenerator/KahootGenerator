@@ -1,5 +1,9 @@
 @use "../abstracts" as *;
 
+:root {
+    font-size: 16px;
+}
+
 * {
     user-select: none;
 }
