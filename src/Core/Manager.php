@@ -14,7 +14,6 @@ namespace App\Core;
        protected PDO | null $_connexion;
 
         public $table;
-        public $id;
 
         public function getTable(): string {
             return $this->table;
@@ -35,7 +34,7 @@ namespace App\Core;
             }
         }
 
-        public function getOne() {
+        public function getOne(string $id) {
             $sql = "SELECT * FROM :table WHERE id = :id";
 
             $query = $this->_connexion->prepare($sql);
