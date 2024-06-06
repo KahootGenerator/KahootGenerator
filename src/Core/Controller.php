@@ -24,7 +24,7 @@ abstract class Controller
         return new $modelManagerPath;
     }
 
-    public function render(string $path, array $data): void
+    public function render(string $path, array $data = []): void
     {
         if (!isset($data['title'])) {
             $data['title'] = $this->getPageTitle();
