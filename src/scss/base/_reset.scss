@@ -34,7 +34,10 @@ ul {
   list-style: none;
 }
 
-img, picture img, picture source, iframe {
+img,
+picture img,
+picture source,
+iframe {
   max-width: 100%;
   height: auto;
   object-fit: cover;
@@ -47,4 +50,10 @@ a {
 button {
   background-color: initial;
   border: none;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
 }
