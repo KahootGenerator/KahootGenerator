@@ -8,25 +8,9 @@ create database if not exists `kahoot-generator`;
 use `kahoot-generator`;
 
 /*==============================================================*/
-
-drop table if exists `answer`;
-
-drop table if exists `question`;
-
-drop table if exists `kahoot`;
-
-drop table if exists `difficulty`;
-
-drop table if exists `language`;
-
-drop table if exists `time`;
-
-drop table if exists `user`;
-
-/*==============================================================*/
 /* Table : answer                                               */
 /*==============================================================*/
-create table `answer`
+create table if not exists `answer`
 (
    id            varchar(13) not null,
    id_question          varchar(13) not null,
@@ -39,7 +23,7 @@ create table `answer`
 /*==============================================================*/
 /* Table : difficulty                                           */
 /*==============================================================*/
-create table `difficulty`
+create table if not exists `difficulty`
 (
    id        int not null Auto_increment,
    libelle   varchar(50) not null,
@@ -51,7 +35,7 @@ INSERT INTO `difficulty`(libelle) VALUES ('Facile'), ('Moyen'), ('Difficile'), (
 /*==============================================================*/
 /* Table : kahoot                                               */
 /*==============================================================*/
-create table `kahoot`
+create table if not exists `kahoot`
 (
    id            varchar(13) not null,
    id_user              varchar(13) not null,
@@ -66,7 +50,7 @@ create table `kahoot`
 /*==============================================================*/
 /* Table : language                                             */
 /*==============================================================*/
-create table `language`
+create table if not exists `language`
 (
    id          int not null Auto_increment,
    libelle     varchar(50) not null,
@@ -78,7 +62,7 @@ INSERT INTO `language`(libelle) VALUES ('Français'), ('Anglais');
 /*==============================================================*/
 /* Table : question                                             */
 /*==============================================================*/
-create table `question`
+create table if not exists `question`
 (
    id          varchar(13) not null,
    id_kahoot            varchar(13) not null,
@@ -90,7 +74,7 @@ create table `question`
 /*==============================================================*/
 /* Table : time                                                 */
 /*==============================================================*/
-create table `time`
+create table if not exists `time`
 (
    id              int not null Auto_increment,
    seconds         int not null,
@@ -102,7 +86,7 @@ INSERT INTO `time`(seconds) VALUES (5), (10), (20), (30), (60), (90), (120), (24
 /*==============================================================*/
 /* Table : user                                                 */
 /*==============================================================*/
-create table `user`
+create table if not exists `user`
 (
    id              varchar(13) not null,
    username             varchar(20) not null,
