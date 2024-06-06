@@ -22,6 +22,7 @@ input[type="radio"] {
 
   &[open] {
     z-index: 1;
+    transform: translateY(-1px);
 
     summary {
       border-radius: 0;
@@ -83,10 +84,14 @@ input[type="radio"] {
 
     li {
       border-bottom: 2px solid $color-black;
+
+      &:hover {
+        background-color: darken($color-cream, 7%);
+      }
+
       padding: 0.5rem 1.2rem;
 
       &:last-child {
-
         border-bottom: none;
       }
 
