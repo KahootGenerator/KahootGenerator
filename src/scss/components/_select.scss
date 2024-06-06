@@ -87,11 +87,17 @@ input[type="radio"] {
     li {
       border-bottom: 2px solid $color-black;
 
+      &:hover {
+        background-color: darken($color-cream, 7%);
+      }
+
       &:first-child {
         padding-top: 0;
       }
 
       &:last-child {
+        border-bottom-left-radius: $border-radius-medium;
+        border-bottom-right-radius: $border-radius-medium;
         padding-bottom: 0;
         border-bottom: none;
       }
