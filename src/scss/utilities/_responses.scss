@@ -1,3 +1,6 @@
+@use "../abstracts/" as *;
+@use "../components/" as *;
+
 .responses-wrapper {
   width: 100%;
   display: grid;
