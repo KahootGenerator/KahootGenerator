@@ -1,0 +1,22 @@
+@use "../abstracts/" as *;
+
+.question {
+    width: 80rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .question-title {
+        width: 90%;
+        background-color: $color-lightblue;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        border-radius: $border-radius-medium;
+        border-width: $border-width-m;
+        margin: 1rem;
+        padding: 1rem;
+        font-size: 1.2rem;
+        display: block;
+    }
+}
