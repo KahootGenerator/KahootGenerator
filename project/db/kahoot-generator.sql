@@ -30,7 +30,6 @@ create table `answer`
 (
    id            varchar(13) not null,
    id_question          varchar(13) not null,
-   id_kahoot            varchar(13) not null,
    libelle       varchar(75) not null,
    correct              bool not null,
    primary key (id)
@@ -84,7 +83,7 @@ create table `question`
    id_kahoot            varchar(13) not null,
    id_time              int not null,
    question             varchar(120) not null,
-   primary key (id, id_kahoot)
+   primary key (id)
 )Engine = InnoDB;
 
 /*==============================================================*/
@@ -110,8 +109,8 @@ create table `user`
    primary key (id)
 )Engine = InnoDB;
 
-alter table `answer` add constraint FK_INCLUDE foreign key (id_question, id_kahoot)
-      references `question` (id, id_kahoot) on delete cascade on update restrict;
+alter table `answer` add constraint FK_INCLUDE foreign key (id_question)
+      references `question` (id) on delete cascade on update restrict;
 
 alter table `kahoot` add constraint FK_DEFINES foreign key (id_difficulty)
       references `difficulty` (id) on delete cascade on update restrict;
