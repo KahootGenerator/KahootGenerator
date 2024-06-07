@@ -13,7 +13,9 @@ final class ViewController extends Controller
         $this->setPageTitle("Kahoot Générator");
 
         //render the view index
-        $this->render('index');
+
+        $this->render('index', ['title' => $this->getPageTitle(), "backgroundName" => "home"]);
+
     }
     function showGenerate()
     {
@@ -21,7 +23,7 @@ final class ViewController extends Controller
         $this->setPageTitle("Choix des options !");
 
         //render the view generate
-        $this->render('kahoot/generate');
+        $this->render('/kahoot/generate', ['title' => $this->getPageTitle(), "backgroundName" => "generation"]);
     }
     function showRegister()
     {
@@ -46,6 +48,6 @@ final class ViewController extends Controller
         $this->setPageTitle("Votre Kahoot !");
 
         //Render the view show
-        $this->render('/kahoot/show', ['title' => $this->getPageTitle()]);
+        $this->render('/kahoot/show', ['title' => $this->getPageTitle(), "backgroundName" => "kahoot"]);
     }
 }

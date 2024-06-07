@@ -1,6 +1,10 @@
 @use "./colors" as *;
 
-// Background Color / Image:
+// nav height
+
+$nav-height: 99.8px;
+
+// Background Color / Image: 
 
 $bg-img-1: url("/img/bg/homepage.svg"); // Homepage Background
 $bg-img-2: url("/img/bg/generation.svg"); // Kahoot Geenration Background

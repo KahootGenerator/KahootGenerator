@@ -41,7 +41,8 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main
+        style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
         <?= $content ?>
     </main>
 </body>
