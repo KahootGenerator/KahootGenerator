@@ -58,7 +58,11 @@ a {
 }
 
 main {
-    height: 100%;
+    transform: translateY($nav-height);
+    height: calc(100% - $nav-height);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     display: flex;
     justify-content: center;
