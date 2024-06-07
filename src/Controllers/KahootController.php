@@ -18,7 +18,20 @@ final class KahootController extends Controller
     }
     public function generate(): void
     {
-        
+        /* $this->validator->validate([
+            "theme" => ["required", "alphaSpace"],
+            "quantity" => ["required", "numeric"],
+            "lang" => ["required", "numeric"],
+            "diff" => ["required", "numeric"]
+        ]);
+        $_SESSION["old"] = $_POST;
+
+        if(!$this->validator->errors()) {
+            
+        } else {
+            header("Location: /kahoot/generate");
+        } */
+        //var_dump($this->callAPI(["theme" => "POO", "quantity" => "4", "lang" => "français", "diff" => "moyen"]));
     }
     public function updateKahoot(int $id): void
     {
@@ -27,7 +40,7 @@ final class KahootController extends Controller
     {
     }
 
-    private function callAPI(array $data): array {
+    private function callAPI(array $data): array|\stdClass {
         //Load API KEY
         $env = Helper::loadEnv();
         $apiKey = $env['API_TOKEN'];
@@ -35,7 +48,7 @@ final class KahootController extends Controller
         $url = 'https://api.openai.com/v1/chat/completions';
         //Generate the prompt
         $prompt = "
-        Crée un quiz en JSON en".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), chaque question ayant 4 réponses possibles et une indication de la bonne réponse.
+        Crée un quiz en JSON en".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), chaque question ayant 4 réponses possibles et une indication de la bonne réponse. (Ne me donnes que le json)
         ";
 
         //Setup the request for API
@@ -79,7 +92,8 @@ final class KahootController extends Controller
             if ($httpStatusCode >= 200 && $httpStatusCode < 300) {
                 //Store the response in the array
                 $result = json_decode($response, true);
-                $res = json_decode(trim($result['choices'][0]['message']['content']));
+                $str = $result['choices'][0]['message']['content'];
+                $res = json_decode($str);
             } else {
                 //Show the API error
                 $res["error"] = 'Erreur HTTP : ' . $httpStatusCode . "\n" . $response;
