@@ -2,7 +2,7 @@
 
 namespace App\Database\Models;
 
-final class User
+final class Question
 {
     private string $id;
     private string $id_kahoot;
