@@ -36,10 +36,10 @@ $Router->post('/kahoot/:id/delete/', 'KahootController@deleteKahoot');
 // Account
 $Router->get('/account/', 'ViewController@showAccount');
 $Router->get('/account/login/', 'ViewController@showLogin');
-$Router->post('/account/login/attempt/', 'UserController@login');
+$Router->post('/account/login/attempt/', 'AccountController@login');
 $Router->get('/account/register/', 'ViewController@showRegister');
-$Router->post('/account/register/attempt/', 'UserController@register');
-$Router->post('/account/logout/', 'UserController@logout');
+$Router->post('/account/register/attempt/', 'AccountController@register');
+$Router->get('/account/logout/', 'AccountController@logout');
 
 try {
     $Router->run();

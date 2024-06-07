@@ -1,65 +1,70 @@
 @use "../abstracts/" as *;
 
 @mixin formField($width) {
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 
-    label {
-        margin-left: 15px;
-        font-family: $font-body;
-        font-size: $font-xs;
-    }
+  label {
+    padding-left: 100px;
+    width: 100%;
+    margin-left: 15px;
+    font-family: $font-body;
+    font-size: $font-xs;
+  }
 
-    input[type="text"], .select {
-        height: 50px;
-        width: $width !important;
-    }
+  input[type="text"],
+  input[type="password"],
+  .select {
+    height: 50px;
+    width: $width !important;
+  }
 }
 
 .form {
-    padding: 25px;
-    background-color: $color-lightblue;
-    height: fit-content;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 25px;
-    border: $color-black solid 1px;
-    border-width: $border-width-xl;
-    border-radius: $border-radius-high;
-    box-shadow: $shadow-thick;
+  padding: 25px;
+  background-color: $color-lightblue;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  border: $color-black solid 1px;
+  border-width: $border-width-xl;
+  border-radius: $border-radius-high;
+  box-shadow: $shadow-thick;
 }
 
 .form-field--100 {
-    @include formField(100%)
+  @include formField(100%);
 }
 
 .form-field--75 {
-    @include formField(75%)
+  @include formField(75%);
 }
 
 .form-field--50 {
-    @include formField(50%)
+  @include formField(50%);
 }
 
 .form-field--double {
-    @include formField(100%);
-    flex-direction: row;
+  @include formField(100%);
+  flex-direction: row;
 }
 
 .form-field--checkbox {
-    display: flex;
-    gap: 15px;
-    cursor: pointer;
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
 
-    label {
-        font-family: $font-body;
-        font-size: $font-xs;
-        margin-left: 0;
-    }
+  label {
+    font-family: $font-body;
+    font-size: $font-xs;
+    margin-left: 0;
+  }
 }

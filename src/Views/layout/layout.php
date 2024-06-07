@@ -13,12 +13,33 @@
 
 <body>
     <header>
-        <img class="logo" src="/img/logo.png" alt="">
         <nav>
-            <a href="/">Accueil</a>
-            <a href="/kahoot/generate">Créer un kahoot</a>
+            <img class="logo" src="/img/logo.png" alt="Logo">
+            <div>
+                <ul>
+                    <li>
+                        <a href="/" class="link">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="/kahoot/generate/" class="link">Créer un kahoot</a>
+                    </li>
+                </ul>
+                <ul>
+                    <?php if (!isset($_SESSION['user'])) { ?>
+                        <li>
+                            <a href="/account/login/" class="button-purple">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="/account/register/" class="button-orange">Créer un compte</a>
+                        </li>
+                    <?php } else { ?>
+                        <li>
+                            <a href="/account/logout/" class="button-purple">Déconnexion</a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
         </nav>
-        <button class="login">Créer un compte</button>
     </header>
     <main
         style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
@@ -27,3 +48,6 @@
 </body>
 
 </html>
+<?php
+unset($_SESSION['error']);
+unset($_SESSION['old']);

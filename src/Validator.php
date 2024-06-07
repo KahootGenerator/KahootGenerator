@@ -3,7 +3,8 @@
 namespace App;
 
 /** Class Validator **/
-class Validator {
+class Validator
+{
 
     private array $data;
     private array $errors = [];
@@ -38,23 +39,27 @@ class Validator {
         "confirm" => ""
     ];
 
-    public function __construct(array $data) {
+    public function __construct(array $data = [])
+    {
         $this->data = $data ?: $_POST;
     }
 
-    public function validate(array $array): void {
+    public function validate(array $array): void
+    {
         foreach ($array as $field => $rules) {
             $this->validateField($field, $rules);
         }
     }
 
-    public function validateField($field, $rules): void {
+    public function validateField($field, $rules): void
+    {
         foreach ($rules as $rule) {
             $this->validateRule($field, $rule);
         }
     }
 
-    public function validateRule($field, $rule): void {
+    public function validateRule($field, $rule): void
+    {
         $res = strrpos($rule, ":");
         if ($res) {
             $repRule = explode(":", $rule);
@@ -65,7 +70,7 @@ class Validator {
                 $this->errors = [$this->messages[$repRule[0]]];
                 $this->storeSession($field, $changeMessage);
             }
-        }
+        } else {
 
             if ($rule == "confirm") {
                 if (!isset($this->data[$field . 'Confirm'])) {
@@ -82,14 +87,16 @@ class Validator {
                     $this->errors = [$this->messages[$rule]];
                     $this->storeSession($field, $this->messages[$rule]);
                 }
-            }
-            elseif (!preg_match($this->rules[$rule], $this->data[$field])) {
+            } elseif (!preg_match($this->rules[$rule], $this->data[$field])) {
                 $this->errors = [$this->messages[$rule]];
                 $this->storeSession($field, $this->messages[$rule]);
             }
+        }
+
     }
 
-    public function errors(): array {
+    public function errors(): array
+    {
         return $this->errors;
     }
 
