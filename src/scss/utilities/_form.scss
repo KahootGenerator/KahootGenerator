@@ -37,6 +37,12 @@
   border-width: $border-width-xl;
   border-radius: $border-radius-high;
   box-shadow: $shadow-thick;
+
+  a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .form-field--full {
