@@ -1,47 +1,46 @@
-@use '../abstracts/' as *;
+@use "../abstracts/" as *;
 
 header {
-    width: 100vw;
-    padding: 1.5rem;
-    border-bottom: black 2px solid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1.5rem;
+  background-color: $color-white;
+  border-bottom: $color-black 2px solid;
+  box-shadow: $shadow-light;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  nav {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: white;
-    box-shadow: $shadow-light;
-    nav {
-        margin: 10px 1vw;
-        border-left: black solid 0.5px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        a {
-            margin: 0 2vw;
-        }
-    }
-    .logo {
-        width: 50px;
-        height: 50px;
-    }
-    .login {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: auto;
-        width: 15rem;
-        border: 1px solid black;
-        border-radius: $border-radius-medium;
-        border-width: $border-width-m;
-        transition: all 0.8ms;
-        background-color: $color-purple;
+    gap: 1.5rem;
 
-        &:active {
-            transform: translateY(1px);
-            border-width: 2px;
-        }
+    .logo {
+      width: 3.1rem;
+      height: 3.1rem;
     }
+
+    div {
+      padding-left: 5rem;
+      border-left: solid $color-black 1px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      ul {
+        display: flex;
+        gap: 5rem;
+
+        li .link:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

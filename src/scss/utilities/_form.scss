@@ -52,12 +52,19 @@
   @include formField(50%);
 }
 
+.form-field--double {
+  @include formField(100%);
+  flex-direction: row;
+}
+
 .form-field--checkbox {
   display: flex;
   gap: 15px;
+  cursor: pointer;
 
   label {
     font-family: $font-body;
-    font-size: $font-s;
+    font-size: $font-xs;
+    margin-left: 0;
   }
 }

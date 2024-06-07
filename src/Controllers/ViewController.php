@@ -23,6 +23,14 @@ final class ViewController extends Controller
         //render the view generate
         $this->render('kahoot/generate');
     }
+    function showRegister()
+    {
+        //set title
+        $this->setPageTitle("Creation de votre compte !");
+
+        //render the view generate
+        $this->render('account/register');
+    }
     function showLogin()
     {
         //set title
@@ -32,7 +40,8 @@ final class ViewController extends Controller
         $this->render('account/login');
     }
 
-    public function showOneKahoot(int $id): void {
+    public function showOneKahoot(int $id): void
+    {
         //Set title
         $this->setPageTitle("Votre Kahoot !");
 
