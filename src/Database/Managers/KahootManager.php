@@ -6,7 +6,7 @@ use App\Core\Manager;
 use App\Database\Models\Kahoot;
 use PDOException;
 
-class UserManager extends Manager
+class KahootManager extends Manager
 {
     public function __construct()
     {

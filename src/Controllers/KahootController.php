@@ -6,7 +6,7 @@ use App\Validator;
 use App\Database\Managers\KahootManager;
 use App\Core\Controller;
 
-final class AccountController extends Controller
+final class KahootController extends Controller
 {
     protected Validator $validator;
     // protected KahootManager $kahootManager;
