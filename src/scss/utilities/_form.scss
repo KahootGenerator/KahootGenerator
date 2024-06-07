@@ -2,15 +2,13 @@
 
 @mixin formField($width) {
   height: fit-content;
-  width: 100%;
+  width: $width;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
+  gap: 10px;
 
-  label {
-    padding-left: 100px;
-    width: 100%;
+  label,
+  span {
     margin-left: 15px;
     font-family: $font-body;
     font-size: $font-xs;
@@ -18,9 +16,10 @@
 
   input[type="text"],
   input[type="password"],
+  input[type="number"],
   .select {
     height: 50px;
-    width: $width !important;
+    width: 100%;
   }
 }
 
@@ -40,7 +39,7 @@
   box-shadow: $shadow-thick;
 }
 
-.form-field--100 {
+.form-field--full {
   @include formField(100%);
 }
 
@@ -48,13 +47,14 @@
   @include formField(75%);
 }
 
-.form-field--50 {
-  @include formField(50%);
-}
-
 .form-field--double {
   @include formField(100%);
   flex-direction: row;
+  gap: 5%;
+
+  div {
+    width: 47.5%;
+  }
 }
 
 .form-field--checkbox {
