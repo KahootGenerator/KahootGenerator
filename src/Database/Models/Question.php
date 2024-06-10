@@ -38,7 +38,7 @@ final class User
         return $this->question;
     }
 
-    public function getanswers(): array
+    public function getAnswers(): array
     {
         if (isset($this->answers)) {
             return $this->answers;
