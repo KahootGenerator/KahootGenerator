@@ -1,13 +1,15 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 @mixin button($color, $width: 200px) {
+  color: $color-black;
+  text-decoration: none;
   background-color: $color;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   width: $width;
-  border: 1px solid black;
+  border: 1px solid $color-black;
   border-radius: $border-radius-medium;
   border-width: $border-width-m;
   transition: all 0.8ms;
