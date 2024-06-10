@@ -4,15 +4,16 @@ input[type="radio"] {
   counter-increment: radios;
   appearance: none;
   display: none;
+  margin: 0;
 
   &:checked {
-    display: inline;
+    display: block;
   }
 
-  &:after {
+  &::before {
     content: attr(title);
-    display: inline;
-    font-size: 1rem;
+    display: block;
+    height: 28px;
   }
 }
 
@@ -22,9 +23,9 @@ input[type="radio"] {
 
   &[open] {
     z-index: 1;
-    transform: translateY(-1px);
 
     summary {
+      border-color: $color-blue;
       border-radius: 0;
       border-top-left-radius: $border-radius-medium;
       border-top-right-radius: $border-radius-medium;
@@ -35,16 +36,17 @@ input[type="radio"] {
         position: fixed;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
       }
 
       &:after {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
       }
     }
   }
 
   summary {
-    width: calc(100% - 2.39rem);
     padding: 0.5rem 1.2rem;
     cursor: pointer;
     background-color: $color-cream;
@@ -53,6 +55,22 @@ input[type="radio"] {
     border-style: solid;
     border-radius: $border-radius-medium;
     list-style: none;
+    transition: all 0.2s, border-color 0.3s;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:focus-visible {
+      border-color: $color-blue;
+      outline: none;
+    }
 
     &::-webkit-details-marker {
       display: none;
@@ -60,11 +78,13 @@ input[type="radio"] {
 
     &:after {
       content: "";
-      float: right;
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      transform: translate(-50%, -50%) rotate(90deg);
       width: 1.5rem;
       height: 1.5rem;
       background: url("/img/utils/arrow.svg") no-repeat center;
-      transform: rotate(90deg);
       transform-origin: center center;
       transition: transform ease-in-out 100ms;
     }
@@ -73,29 +93,31 @@ input[type="radio"] {
   ul {
     transform: translateY(-2px);
     position: absolute;
-    width: 100%;
-    background-color: $color-cream;
+    width: calc(100% - 0.25rem);
     background-color: $color-cream;
     border-width: 0 2px 4px 2px;
     border-color: $color-black;
     border-style: solid;
+    border-top: 0;
     border-bottom-left-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
 
     li {
       border-bottom: 2px solid $color-black;
+      padding: 0.5rem 1.2rem;
+      transition: all 0.25s;
 
       &:hover {
         background-color: darken($color-cream, 7%);
       }
 
-      padding: 0.5rem 1.2rem;
-
       &:last-child {
         border-bottom: none;
+        border-radius: $border-radius-medium;
       }
 
       label {
+        height: 28px;
         width: 100%;
         display: flex;
         align-items: center;
