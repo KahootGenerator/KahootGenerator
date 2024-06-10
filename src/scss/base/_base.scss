@@ -57,14 +57,18 @@ a {
   border: none;
 }
 
-main {
-  transform: translateY($nav-height);
-  height: calc(100% - $nav-height);
+body {
   background-size: cover;
-  background-position: center;
+  background-position: center calc(100% + $nav-height);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-clip: border-box;
+}
+
+main {
+  overflow-x: hidden;
+  transform: translateY($nav-height);
+  height: calc(100% - $nav-height);
   width: 100%;
   display: flex;
   justify-content: center;
