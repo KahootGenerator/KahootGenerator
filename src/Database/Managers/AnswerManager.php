@@ -16,10 +16,10 @@ class AnswerManager extends Manager
 
     public function getAnswersFormQuestion(string $id): array
     {
-        $query = $this->_connexion->prepare('SELECT answer.id, id_question, libelle, correct FROM answer JOIN question ON answer.id_question = question.id WHERE id_kahoot = :id');
+        $query = $this->_connexion->prepare('SELECT id, id_question, libelle, correct FROM answer WHERE id_question = :id');
         $query->execute(['id' => $id]);
         $answers = [];
-        if ($match = $query->fetch()) {
+        while ($match = $query->fetch()) {
             $answers[] =  new Answer($match["id"], $match["id_question"], $match["libelle"], $match["correct"]);
         }
         return $answers;
