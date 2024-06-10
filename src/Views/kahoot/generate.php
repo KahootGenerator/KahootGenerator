@@ -20,19 +20,19 @@ use App\Helper;
 
             <label for="lang">Langue du questionnaire :</label>
 
-            <details class="select" id="language">
+            <details class="select" id="lang">
                 <summary>
-                    <input type="radio" name="language" title="Choisir une langue" checked>
+                    <input type="radio" name="lang" title="Choisir une langue" checked>
                     <?php foreach ($languages as $language) { ?>
-                        <input type="radio" name="language" id="language_<?= Helper::escape($language->getId()) ?>"
-                            title="<?= Helper::escape($language->getLibelle()) ?>">
+                        <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
+                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId();?>">
                     <?php } ?>
                 </summary>
                 <ul>
                     <?php foreach ($languages as $language) { ?>
                         <li>
                             <label
-                                for="language_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -42,21 +42,21 @@ use App\Helper;
     </div>
     <div class="form-field--double">
         <div>
-            <label for="lang">Difficulté :</label>
+            <label for="diff">Difficulté :</label>
 
-            <details class="select" id="difficultie">
+            <details class="select" id="diff">
                 <summary>
-                    <input type="radio" name="difficultie" title="Choisir une difficulté" checked>
-                    <?php foreach ($difficulties as $difficultie) { ?>
-                        <input type="radio" name="difficultie" id="difficultie_<?= Helper::escape($difficultie->getId()) ?>"
-                            title="<?= Helper::escape($difficultie->getLibelle()) ?>">
+                    <input type="radio" name="diff" title="Choisir une difficulté" checked>
+                    <?php foreach ($difficulties as $difficulty) { ?>
+                        <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
+                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId();?>">
                     <?php } ?>
                 </summary>
                 <ul>
-                    <?php foreach ($difficulties as $difficultie) { ?>
+                    <?php foreach ($difficulties as $difficulty) { ?>
                         <li>
                             <label
-                                for="difficultie_<?= Helper::escape($difficultie->getId()) ?>"><?= Helper::escape($difficultie->getLibelle()) ?></label>
+                                for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -66,14 +66,14 @@ use App\Helper;
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox1" class="checkbox">
+            <input type="checkbox" id="checkbox1" class="checkbox" name="includeBools" value="">
             <label for="checkbox1"><img src="/img/utils/check.svg"></label>
             <label for="checkbox1">Inclure des vrais ou faux</label>
         </div>
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox2" class="checkbox">
+            <input type="checkbox" id="checkbox2" class="checkbox" name="multiCorrect" value="">
             <label for="checkbox2"><img src="/img/utils/check.svg"></label>
             <label for="checkbox2"> Plusieurs réponse correctes pour une question</label>
         </div>
