@@ -26,4 +26,19 @@ class KahootManager extends Manager
             date('Y-m-d')
         ]);
     }
+
+    public function getOne(string $id)
+    {
+        $sql = "SELECT * FROM kahoot WHERE id = :id";
+
+        $query = $this->_connexion->prepare($sql);
+
+        $query->execute(['id' => $id]);
+
+        $match = $query->fetch();
+        if($match) {
+            return new Kahoot($match['id'], $match['id_user'], $match['id_difficulty'], $match['id_language'], $match['title'], $match['theme'], $match['date']);
+        }
+        return $query->fetch();
+    }
 }

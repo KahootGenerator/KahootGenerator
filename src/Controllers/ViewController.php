@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Database\Managers\KahootManager;
 use App\Database\Managers\LanguageManager;
 use App\Database\Managers\DifficultyManager;
 use App\Database\Managers\TimeManager;
@@ -13,6 +14,7 @@ final class ViewController extends Controller
     protected LanguageManager $languageManager;
     protected DifficultyManager $difficultyManager;
     protected TimeManager $timeManager;
+    protected KahootManager $kahootManager;
     function showIndex()
     {
         //set title
@@ -60,10 +62,14 @@ final class ViewController extends Controller
         $this->timeManager = new TimeManager();
         $times = $this->timeManager->getTimes();
 
+        //Get the kahoot
+        $this->kahootManager = new KahootManager();
+        $kahoot = $this->kahootManager->getOne($id);
+
         //Set title
         $this->setPageTitle("Votre Kahoot !");
 
         //Render the view show
-        $this->render('/kahoot/show', ['title' => $this->getPageTitle(), "backgroundName" => "kahoot", "id" => $id, "times" => $times]);
+        $this->render('/kahoot/show', ['title' => $this->getPageTitle(), "backgroundName" => "kahoot", "kahoot" => $kahoot, "times" => $times]);
     }
 }

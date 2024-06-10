@@ -16,10 +16,10 @@ class QuestionManager extends Manager
 
     public function getQuestionsFormKahoot(string $id): array
     {
-        $query = $this->_connexion->prepare('SELECT question.id, id_kahoot, id_time, question FROM question JOIN kahoot ON question.id_kahoot = kahoot.id WHERE id_kahoot = :id');
+        $query = $this->_connexion->prepare('SELECT id, id_kahoot, id_time, question FROM question WHERE id_kahoot = :id');
         $query->execute(['id' => $id]);
         $questions = [];
-        if ($match = $query->fetch()) {
+        while ($match = $query->fetch()) {
             $questions[] =  new Question($match["id"], $match["id_kahoot"], $match["id_time"], $match["question"]);
         }
         return $questions;
