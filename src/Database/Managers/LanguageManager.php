@@ -23,4 +23,15 @@ class LanguageManager extends Manager
         }
         return null;
     }
+
+    public function getOne(string $id)
+    {
+        $sql = "SELECT * FROM language WHERE id = :id";
+
+        $query = $this->_connexion->prepare($sql);
+
+        $query->execute(['id' => $id]);
+
+        return $query->fetch();
+    }
 }
