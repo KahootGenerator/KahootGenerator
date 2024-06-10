@@ -37,7 +37,7 @@ use App\Helper;
                     </div>
                 </article>
                 <div class="question">
-                    <p class="question-title" id="<?= $question->getId();?>-title" contenteditable="plaintext-only"><?= $question->getQuestion();?></p>
+                    <p class="question-title" id="<?= $question->getId();?>-title" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion());?></p>
                     <div class="responses-wrapper">
                         <?php foreach($question->getAnswers() as $answer) {?>
                             <div class="response">
@@ -47,7 +47,7 @@ use App\Helper;
                                         <img src="/img/utils/check.svg" alt="Checked">
                                     </label>
                                 </div>
-                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId();?>-answer"><?= $answer->getLibelle();?></p>
+                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId();?>-answer"><?= Helper::escape($answer->getLibelle());?></p>
                                 <button class="response--cross">
                                     <img src="/img/utils/cross.svg" alt="Cross">
                                 </button>
