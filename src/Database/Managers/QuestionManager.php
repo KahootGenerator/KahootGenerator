@@ -18,6 +18,19 @@ class QuestionManager extends Manager
     {
         $query = $this->_connexion->prepare('SELECT question.id, id_kahoot, id_time, question FROM question JOIN kahoot ON question.id_kahoot = kahoot.id WHERE id_kahoot = :id');
         $query->execute(['id' => $id]);
-        return $query->fetchAll(\PDO::FETCH_CLASS, "App\Database\Models\Question");
+        $questions = [];
+        if ($match = $query->fetch()) {
+            $questions[] =  new Question($match["id"], $match["id_kahoot"], $match["id_time"], $match["question"]);
+        }
+        return $questions;
+    }
+
+    public function create(string $id, string $id_kahoot, string $question): void {
+        $query = $this->_connexion->prepare('INSERT INTO question (id, id_kahoot, id_time, question) VALUES (?,?,4,?)');
+        $query->execute([
+            $id,
+            $id_kahoot,
+            $question
+        ]);
     }
 }

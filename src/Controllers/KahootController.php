@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Database\Managers\AnswerManager;
+use App\Database\Managers\DifficultyManager;
+use App\Database\Managers\LanguageManager;
+use App\Database\Managers\QuestionManager;
 use App\Validator;
 use App\Database\Managers\KahootManager;
 use App\Core\Controller;
@@ -10,28 +14,67 @@ use App\Helper;
 final class KahootController extends Controller
 {
     protected Validator $validator;
-    // protected KahootManager $kahootManager;
+    protected KahootManager $kahootManager;
     public function __construct()
     {
         $this->validator = new Validator();
-        // $this->kahootManager = new KahootManager();
+        $this->kahootManager = new KahootManager();
     }
     public function generate(): void
     {
-        /* $this->validator->validate([
-            "theme" => ["required", "alphaSpace"],
-            "quantity" => ["required", "numeric"],
-            "lang" => ["required", "numeric"],
-            "diff" => ["required", "numeric"]
-        ]);
-        $_SESSION["old"] = $_POST;
-
-        if(!$this->validator->errors()) {
-            
+        if(isset($_SESSION['user'])) {
+            $this->validator->validate([
+                "theme" => ["required", "alphaSpace"],
+                "quantity" => ["required", "numeric"],
+                "lang" => ["required", "numeric"],
+                "diff" => ["required", "numeric"]
+            ]);
+            $_SESSION["old"] = $_POST;
+    
+            if(!$this->validator->errors()) {
+                $dm = new DifficultyManager();
+                $diff = $dm->getOne($_POST["diff"]);
+                $lm = new LanguageManager();
+                $lang = $lm->getOne($_POST["lang"]);
+                if($diff) {
+                    if($lang) {
+                        $data = ["theme" => $_POST['theme'], "quantity" => $_POST['quantity'], "lang" => $_POST['lang'], "diff" => $_POST['diff']];
+                        if(isset($_POST['includeBools'])) {
+                            $data["includeBools"] = true;
+                        }
+                        if(isset($_POST['multiCorrect'])) {
+                            $data["multiCorrect"] = true;
+                        }
+                        try {
+                            $quiz = $this->callAPI($data);
+                            $kahoot_id = uniqid();
+                            $this->kahootManager->create($kahoot_id, $diff['id'], $lang['id'], $quiz->title);
+                            $qm = new QuestionManager();
+                            $am = new AnswerManager();
+                            foreach($quiz->questions as $question) {
+                                $question_id = uniqid();
+                                $qm->create($question_id, $kahoot_id, $question->question);
+                                foreach($question->answers as $i => $answer) {
+                                    $answer_id = uniqid();
+                                    $am->create($answer_id, $question_id, $answer, in_array($i, $question->correct_answers));
+                                }
+                            }
+                            header("Location: /kahoot/".$kahoot_id);
+                        } catch (\Exception $e) {
+                            echo $e;
+                        }
+                    } else {
+                        $_SESSION["error"]["lang"] = "La langue choisie n'a pas été trouvée ou n'est pas prise en charge !";
+                    }
+                } else {
+                    $_SESSION["error"]["diff"] = "La difficulté choisie n'a pas été trouvée !";
+                }
+            } else {
+                header("Location: /kahoot/generate");
+            }
         } else {
-            header("Location: /kahoot/generate");
-        } */
-        //var_dump($this->callAPI(["theme" => "POO", "quantity" => "4", "lang" => "français", "diff" => "moyen"]));
+            header("Location: /account/login");
+        }
     }
     public function updateKahoot(int $id): void
     {
@@ -48,7 +91,18 @@ final class KahootController extends Controller
         $url = 'https://api.openai.com/v1/chat/completions';
         //Generate the prompt
         $prompt = "
-        Crée un quiz en JSON en".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), chaque question ayant 4 réponses possibles et une indication de la bonne réponse. (Ne me donnes que le json)
+        Crée un quiz en JSON en ".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), pour chaque question (120 caractères max), fournis 4 réponses ".(isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "")." (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers".(isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "")."). (Ne me donnes que le json, crée un titre de 50 caractères max). Utilise un JSON de ce type:
+            {
+                \"title\": \"\",
+                \"questions\": [
+                    {
+                        \"question\": \"\",
+                        \"answers\": [\"\"],
+                        \"correct_answers\": [".(isset($data["multiCorrect"]) ? "Index de la bonne réponse" : "Index de la(les) bonne(s) réponse(s)")."]
+                    }
+                    ...
+                ]
+            }
         ";
 
         //Setup the request for API
@@ -93,6 +147,7 @@ final class KahootController extends Controller
                 //Store the response in the array
                 $result = json_decode($response, true);
                 $str = $result['choices'][0]['message']['content'];
+                echo $str;
                 $res = json_decode($str);
             } else {
                 //Show the API error

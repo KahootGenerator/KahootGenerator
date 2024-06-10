@@ -1,3 +1,8 @@
+<?php
+use App\Helper;
+
+?>
+
 <div class="main-container">
     <h1><?= $data["title"] ?></h1>
 
@@ -9,40 +14,25 @@
                 <h2 class="question-block-title">Question 1</h2>
                 <div id="question1">
                     <div class="question-block-actions">
-                        <details class="select">
-                            <summary>
-                                <input type="radio" name="time-question1" id="time-question1,1" title="5s">
-                                <input type="radio" name="time-question1" id="time-question1,2" title="10s">
-                                <input type="radio" name="time-question1" id="time-question1,3" title="20s">
-                                <input type="radio" name="time-question1" id="time-question1,4" title="30s" checked>
-                                <input type="radio" name="time-question1" id="time-question1,5" title="60s">
-                                <input type="radio" name="time-question1" id="time-question1,6" title="120s">
-                                <input type="radio" name="time-question1" id="time-question1,7" title="240s">
-                            </summary>
-                            <ul>
+                         <details class="select">
+                        <summary>
+                            <?php foreach ($times as $time) { ?>
+                                <input type="radio" name="time-question"
+                                    id="time-question_<?= Helper::escape($time->getId()) ?>"
+                                    title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
+                                          echo "checked";
+                                      } ?>>
+                            <?php } ?>
+                        </summary>
+                        <ul>
+                            <?php foreach ($times as $time) { ?>
                                 <li>
-                                    <label for="time-question1,1">5s</label>
+                                    <label
+                                        for="time-question_<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
                                 </li>
-                                <li>
-                                    <label for="time-question1,2">10s</label>
-                                </li>
-                                <li>
-                                    <label for="time-question1,3">20s</label>
-                                </li>
-                                <li>
-                                    <label for="time-question1,4">30s</label>
-                                </li>
-                                <li>
-                                    <label for="time-question1,5">60s</label>
-                                </li>
-                                <li>
-                                    <label for="time-question1,6">120s</label>
-                                </li>
-                                <li>
-                                    <label for="time-question1,7">240s</label>
-                                </li>
-                            </ul>
-                        </details>
+                            <?php } ?>
+                        </ul>
+                    </details>
                         <button class="button-red"><img src="/img/utils/trash.svg"></button>
                     </div>
                 </div>
@@ -103,7 +93,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
