@@ -14,13 +14,13 @@ class LanguageManager extends Manager
         $this->getConnection();
     }
 
-    public function getLanguages(string $username): Language|null
+    public function getLanguages(): array
     {
         $query = $this->_connexion->query('SELECT * FROM language ORDER BY libelle');
-        $match = $query->fetch();
-        if ($match) {
-            return new Language($match['id'], $match['libelle']);
+        $languages = [];
+        while ($match = $query->fetch()) {
+            $languages[] = new Language($match['id'], $match['libelle']);
         }
-        return null;
+        return $languages;
     }
 }
