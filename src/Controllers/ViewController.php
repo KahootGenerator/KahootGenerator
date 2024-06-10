@@ -43,7 +43,7 @@ final class ViewController extends Controller
         $this->setPageTitle("Creation de votre compte !");
 
         //render the view generate
-        $this->render('account/register');
+        $this->render('account/register', ['title' => $this->getPageTitle(), "backgroundName" => "register"]);
     }
     function showLogin()
     {
@@ -51,7 +51,7 @@ final class ViewController extends Controller
         $this->setPageTitle("Connexion à votre compte !");
 
         //render the view generate
-        $this->render('account/login');
+        $this->render('account/login', ['title' => $this->getPageTitle(), "backgroundName" => "login"]);
     }
 
     public function showOneKahoot(string $id): void

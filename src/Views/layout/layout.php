@@ -11,7 +11,8 @@
     <title><?= isset($data['title']) ? "Kahoot Generator - " . $data['title'] : "Kahoot Generator" ?></title>
 </head>
 
-<body>
+<body
+    style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
     <header>
         <nav>
             <a class="logo" href="/">
@@ -43,8 +44,7 @@
             </div>
         </nav>
     </header>
-    <main
-        style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
+    <main>
         <?= $content ?>
     </main>
 </body>
