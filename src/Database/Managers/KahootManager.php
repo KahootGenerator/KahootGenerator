@@ -13,4 +13,17 @@ class KahootManager extends Manager
         $this->setTable('kahoot');
         $this->getConnection();
     }
+
+    public function create(string $id, int $diff, int $lang, string $title): void {
+        $query = $this->_connexion->prepare("INSERT INTO kahoot (id, id_user, id_difficulty, id_language, title, theme, date) VALUES (?,?,?,?,?,?,?)");
+        $query->execute([
+            $id,
+            $_SESSION["user"]['id'],
+            $diff,
+            $lang,
+            $title,
+            $_POST['theme'],
+            date('Y-m-d')
+        ]);
+    }
 }

@@ -18,6 +18,20 @@ class AnswerManager extends Manager
     {
         $query = $this->_connexion->prepare('SELECT answer.id, id_question, libelle, correct FROM answer JOIN question ON answer.id_question = question.id WHERE id_kahoot = :id');
         $query->execute(['id' => $id]);
-        return $query->fetchAll(\PDO::FETCH_CLASS, "App\Database\Models\Answer");
+        $answers = [];
+        if ($match = $query->fetch()) {
+            $answers[] =  new Answer($match["id"], $match["id_question"], $match["libelle"], $match["correct"]);
+        }
+        return $answers;
+    }
+
+    public function create(string $id, string $id_question, string $libelle, bool $correct): void {
+        $query = $this->_connexion->prepare('INSERT INTO answer (id, id_question, libelle, correct) VALUES (?,?,?,?)');
+        $query->execute([
+            $id,
+            $id_question,
+            $libelle,
+            $correct
+        ]);
     }
 }
