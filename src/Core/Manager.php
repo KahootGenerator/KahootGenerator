@@ -44,7 +44,7 @@ abstract class Manager
 
         $query = $this->_connexion->prepare($sql);
 
-        $query->execute(array('table' => $this->getTable(), 'id' => $this->id));
+        $query->execute(array('table' => $this->getTable(), 'id' => $id));
 
         return $query->fetch();
     }
