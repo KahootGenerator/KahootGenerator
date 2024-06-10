@@ -16,7 +16,7 @@ class AnswerManager extends Manager
 
     public function getAnswersFormQuestion(string $id): array
     {
-        $query = $this->_connexion->prepare('SELECT id, id_question, libelle, correct FROM answer WHERE id_question = :id');
+        $query = $this->_connexion->prepare('SELECT id, id_question, libelle, correct FROM answer WHERE id_question = :id ORDER BY libelle');
         $query->execute(['id' => $id]);
         $answers = [];
         while ($match = $query->fetch()) {
