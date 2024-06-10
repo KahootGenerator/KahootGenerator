@@ -10,7 +10,7 @@ final class ViewController extends Controller
     function showIndex()
     {
         //set title
-        $this->setPageTitle("Kahoot Générator");
+        $this->setPageTitle("Kahoot Generator");
 
         //render the view index
 
