@@ -1,3 +1,8 @@
+<?php
+use App\Helper;
+
+?>
+
 <form action="/kahoot/generate/attempt" method="POST" class="form">
     <h1><?= $data["title"] ?></h1>
 
@@ -18,20 +23,18 @@
             <details class="select" id="lang">
                 <summary>
                     <input type="radio" name="lang" title="Choisir une langue" checked>
-                    <input type="radio" name="lang" id="lang1" title="France" value="fr">
-                    <input type="radio" name="lang" id="lang2" title="Anglais" value="en">
-                    <input type="radio" name="lang" id="lang3" title="Espagnol" value="es">
+                    <?php foreach ($languages as $language) { ?>
+                        <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
+                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId();?>">
+                    <?php } ?>
                 </summary>
                 <ul>
-                    <li>
-                        <label for="lang1">France</label>
-                    </li>
-                    <li>
-                        <label for="lang2">Anglais</label>
-                    </li>
-                    <li>
-                        <label for="lang3">Espagnol</label>
-                    </li>
+                    <?php foreach ($languages as $language) { ?>
+                        <li>
+                            <label
+                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                        </li>
+                    <?php } ?>
                 </ul>
             </details>
         </div>
@@ -39,25 +42,23 @@
     </div>
     <div class="form-field--double">
         <div>
-            <label for="lang">Difficulté :</label>
+            <label for="diff">Difficulté :</label>
 
             <details class="select" id="diff">
                 <summary>
                     <input type="radio" name="diff" title="Choisir une difficulté" checked>
-                    <input type="radio" name="diff" id="diff1" title="Facile" value="fr">
-                    <input type="radio" name="diff" id="diff2" title="Moyen" value="en">
-                    <input type="radio" name="diff" id="diff3" title="Difficile" value="es">
+                    <?php foreach ($difficulties as $difficulty) { ?>
+                        <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
+                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId();?>">
+                    <?php } ?>
                 </summary>
                 <ul>
-                    <li>
-                        <label for="diff1">Facile</label>
-                    </li>
-                    <li>
-                        <label for="diff2">Moyen</label>
-                    </li>
-                    <li>
-                        <label for="diff3">Difficile</label>
-                    </li>
+                    <?php foreach ($difficulties as $difficulty) { ?>
+                        <li>
+                            <label
+                                for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
+                        </li>
+                    <?php } ?>
                 </ul>
             </details>
         </div>
@@ -65,14 +66,14 @@
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox1" class="checkbox">
+            <input type="checkbox" id="checkbox1" class="checkbox" name="includeBools" value="">
             <label for="checkbox1"><img src="/img/utils/check.svg"></label>
             <label for="checkbox1">Inclure des vrais ou faux</label>
         </div>
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox2" class="checkbox">
+            <input type="checkbox" id="checkbox2" class="checkbox" name="multiCorrect" value="">
             <label for="checkbox2"><img src="/img/utils/check.svg"></label>
             <label for="checkbox2"> Plusieurs réponse correctes pour une question</label>
         </div>
