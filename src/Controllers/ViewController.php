@@ -42,7 +42,7 @@ final class ViewController extends Controller
         $this->render('account/login');
     }
 
-    public function showOneKahoot(int $id): void
+    public function showOneKahoot(string $id): void
     {
         //Set title
         $this->setPageTitle("Votre Kahoot !");
