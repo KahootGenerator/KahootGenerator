@@ -14,7 +14,9 @@
 <body>
     <header>
         <nav>
-            <img class="logo" src="/img/logo.png" alt="Logo">
+            <a class="logo" href="/">
+                <img src="/img/logo.png" alt="Logo">
+            </a>
             <div>
                 <ul>
                     <li>
