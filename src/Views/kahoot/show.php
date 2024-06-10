@@ -3,7 +3,7 @@ use App\Helper;
 
 ?>
 
-<div class="main-container">
+<div class="main-container not-align-container">
     <h1><?= $data["title"] ?></h1>
 
     <div class="question-container">

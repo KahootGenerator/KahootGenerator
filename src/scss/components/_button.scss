@@ -19,10 +19,10 @@
     border-width: 2px;
   }
 
-  @if ($color == $color-red) {
-    width: 50px !important;
+  @if ($color ==$color-red) {
+    width: 50px;
 
-    & > img {
+    &>img {
       height: 26px;
       width: 24px;
     }

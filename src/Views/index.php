@@ -1,4 +1,4 @@
-<section class="main-container">
+<section class="main-container not-align-container">
     <h1><?= $data["title"] ?></h1>
     <p>Créez des quiz Kahoot en un instant ! Simplifiez-vous la vie grace à notre application simple, dynamique et
         novatrice</p>
