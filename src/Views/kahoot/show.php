@@ -14,25 +14,25 @@ use App\Helper;
                 <h2 class="question-block-title">Question 1</h2>
                 <div id="question1">
                     <div class="question-block-actions">
-                         <details class="select">
-                        <summary>
-                            <?php foreach ($times as $time) { ?>
-                                <input type="radio" name="time-question"
-                                    id="time-question_<?= Helper::escape($time->getId()) ?>"
-                                    title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
-                                          echo "checked";
-                                      } ?>>
-                            <?php } ?>
-                        </summary>
-                        <ul>
-                            <?php foreach ($times as $time) { ?>
-                                <li>
-                                    <label
-                                        for="time-question_<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </details>
+                        <details class="select">
+                            <summary>
+                                <?php foreach ($times as $time) { ?>
+                                    <input type="radio" name="time-question"
+                                        id="time-question_<?= Helper::escape($time->getId()) ?>"
+                                        title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
+                                              echo "checked";
+                                          } ?>>
+                                <?php } ?>
+                            </summary>
+                            <ul>
+                                <?php foreach ($times as $time) { ?>
+                                    <li>
+                                        <label
+                                            for="time-question_<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </details>
                         <button class="button-red"><img src="/img/utils/trash.svg"></button>
                     </div>
                 </div>
