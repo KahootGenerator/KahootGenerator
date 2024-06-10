@@ -48,11 +48,9 @@
                 </div>
             </article>
             <div class="question">
-                <p class="question-title" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit.
-                    Minus suscipit inventore
-                    aut corporis veritatis fuga voluptate esse iste quae accusantium quisquam, vero ut, tempore numquam
-                    officiis incidunt. Vero, illo aperiam?</p>
+                <p class="question-title" contenteditable="plaintext-only">Lorem ipsum dolor sit amet
+                    consecteturadipisicingelit.Minus suscipit inventoreaut corporis veritatis fuga voluptate esse iste
+                    quae accusantium quisquam, vero ut, tempore numquamofficiis incidunt. Vero, illo aperiam?</p>
                 <div class="responses-wrapper">
                     <div class="response">
                         <div class="response--checkbox">
@@ -61,7 +59,7 @@
                                 <img src="/img/utils/check.svg" alt="Checked">
                             </label>
                         </div>
-                        <p type="text" class="response--text" contenteditable="true">QSDfdsfsdfsdfsdhdfh</p>
+                        <p type="text" class="response--text" contenteditable="plaintext-only">QSDfdsfsdfsdfsdhdfh</p>
                         <button class="response--cross">
                             <img src="/img/utils/cross.svg" alt="Cross">
                         </button>
@@ -73,7 +71,7 @@
                                 <img src="/img/utils/check.svg" alt="Checked">
                             </label>
                         </div>
-                        <p type="text" class="response--text" contenteditable="true">QSDfdsfsdfsdfsdhdfh</p>
+                        <p type="text" class="response--text" contenteditable="plaintext-only">QSDfdsfsdfsdfsdhdfh</p>
                         <button class="response--cross">
                             <img src="/img/utils/cross.svg" alt="Cross">
                         </button>
@@ -85,7 +83,7 @@
                                 <img src="/img/utils/check.svg" alt="Checked">
                             </label>
                         </div>
-                        <p class="response--text" contenteditable="true">QSDfdsfsdfsdfsdhdfh</p>
+                        <p class="response--text" contenteditable="plaintext-only">QSDfdsfsdfsdfsdhdfh</p>
                         <button class="response--cross">
                             <img src="/img/utils/cross.svg" alt="Cross">
                         </button>
@@ -97,7 +95,7 @@
                                 <img src="/img/utils/check.svg" alt="Checked">
                             </label>
                         </div>
-                        <p class="response--text" contenteditable="true">QSDfdsfsdfsdfsdhdfh</p>
+                        <p class="response--text" contenteditable="plaintext-only">QSDfdsfsdfsdfsdhdfh</p>
                         <button class="response--cross">
                             <img src="/img/utils/cross.svg" alt="Cross">
                         </button>
