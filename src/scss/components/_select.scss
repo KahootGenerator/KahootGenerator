@@ -44,6 +44,13 @@ input[type="radio"] {
         transform: translate(-50%, -50%) rotate(0deg);
       }
     }
+
+    ul {
+      border-color: $color-blue;
+      li {
+        border-color: $color-blue;
+      }
+    }
   }
 
   summary {
@@ -101,11 +108,13 @@ input[type="radio"] {
     border-top: 0;
     border-bottom-left-radius: $border-radius-medium;
     border-bottom-right-radius: $border-radius-medium;
+    transition: all 0.2s, border-color 0.3s;
 
     li {
       border-bottom: 2px solid $color-black;
       padding: 0.5rem 1.2rem;
       transition: all 0.25s;
+      transition: all 0.2s, border-color 0.3s;
 
       &:hover {
         background-color: darken($color-cream, 7%);
