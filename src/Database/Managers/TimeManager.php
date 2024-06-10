@@ -17,6 +17,10 @@ class TimeManager extends Manager
     public function getTimes(): array
     {
         $query = $this->_connexion->query('SELECT * FROM time ORDER BY seconds');
-        return $query->fetchAll(\PDO::FETCH_CLASS, "App\Database\Models\Time");
+        $times = [];
+        while ($match = $query->fetch()) {
+            $times[] = new Time($match['id'], $match['seconds']);
+        }
+        return $times;
     }
 }

@@ -17,6 +17,10 @@ class LanguageManager extends Manager
     public function getLanguages(): array
     {
         $query = $this->_connexion->query('SELECT * FROM language ORDER BY libelle');
-        return $query->fetchAll(\PDO::FETCH_CLASS, "App\Database\Models\Language");
+        $languages = [];
+        while ($match = $query->fetch()) {
+            $languages[] = new Language($match['id'], $match['libelle']);
+        }
+        return $languages;
     }
 }

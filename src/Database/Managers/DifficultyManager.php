@@ -14,9 +14,13 @@ class DifficultyManager extends Manager
         $this->getConnection();
     }
 
-    public function getDifficultys(): array
+    public function getDifficulties(): array
     {
         $query = $this->_connexion->query('SELECT * FROM difficulty ORDER BY libelle');
-        return $query->fetchAll(\PDO::FETCH_CLASS, "App\Database\Models\Difficulty");
+        $difficulties = [];
+        while ($match = $query->fetch()) {
+            $difficulties[] = new Difficulty($match['id'], $match['libelle']);
+        }
+        return $difficulties;
     }
 }
