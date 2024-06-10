@@ -2,6 +2,8 @@
 
 namespace App\Database\Models;
 
+use App\Database\Managers\AnswerManager;
+
 final class Question
 {
     private string $id;
@@ -38,12 +40,12 @@ final class Question
         return $this->question;
     }
 
-    public function getanswers(): array
+    public function getAnswers(): array
     {
         if (isset($this->answers)) {
             return $this->answers;
         } else {
-            $manager = new QuestionManager();
+            $manager = new AnswerManager();
             $this->answers = $manager->getAnswersFormQuestion($this->id);
             return $this->answers;
         }

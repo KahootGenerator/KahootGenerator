@@ -1,3 +1,8 @@
+<?php
+use App\Helper;
+
+?>
+
 <form action="/kahoot/generate/attempt" method="POST" class="form">
     <h1><?= $data["title"] ?></h1>
 
@@ -15,23 +20,21 @@
 
             <label for="lang">Langue du questionnaire :</label>
 
-            <details class="select" id="lang">
+            <details class="select" id="language">
                 <summary>
-                    <input type="radio" name="lang" title="Choisir une langue" checked>
-                    <input type="radio" name="lang" id="lang1" title="France" value="fr">
-                    <input type="radio" name="lang" id="lang2" title="Anglais" value="en">
-                    <input type="radio" name="lang" id="lang3" title="Espagnol" value="es">
+                    <input type="radio" name="language" title="Choisir une langue" checked>
+                    <?php foreach ($languages as $language) { ?>
+                        <input type="radio" name="language" id="language_<?= Helper::escape($language->getId()) ?>"
+                            title="<?= Helper::escape($language->getLibelle()) ?>">
+                    <?php } ?>
                 </summary>
                 <ul>
-                    <li>
-                        <label for="lang1">France</label>
-                    </li>
-                    <li>
-                        <label for="lang2">Anglais</label>
-                    </li>
-                    <li>
-                        <label for="lang3">Espagnol</label>
-                    </li>
+                    <?php foreach ($languages as $language) { ?>
+                        <li>
+                            <label
+                                for="language_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                        </li>
+                    <?php } ?>
                 </ul>
             </details>
         </div>
@@ -41,23 +44,21 @@
         <div>
             <label for="lang">Difficulté :</label>
 
-            <details class="select" id="diff">
+            <details class="select" id="difficultie">
                 <summary>
-                    <input type="radio" name="diff" title="Choisir une difficulté" checked>
-                    <input type="radio" name="diff" id="diff1" title="Facile" value="fr">
-                    <input type="radio" name="diff" id="diff2" title="Moyen" value="en">
-                    <input type="radio" name="diff" id="diff3" title="Difficile" value="es">
+                    <input type="radio" name="difficultie" title="Choisir une difficulté" checked>
+                    <?php foreach ($difficulties as $difficultie) { ?>
+                        <input type="radio" name="difficultie" id="difficultie_<?= Helper::escape($difficultie->getId()) ?>"
+                            title="<?= Helper::escape($difficultie->getLibelle()) ?>">
+                    <?php } ?>
                 </summary>
                 <ul>
-                    <li>
-                        <label for="diff1">Facile</label>
-                    </li>
-                    <li>
-                        <label for="diff2">Moyen</label>
-                    </li>
-                    <li>
-                        <label for="diff3">Difficile</label>
-                    </li>
+                    <?php foreach ($difficulties as $difficultie) { ?>
+                        <li>
+                            <label
+                                for="difficultie_<?= Helper::escape($difficultie->getId()) ?>"><?= Helper::escape($difficultie->getLibelle()) ?></label>
+                        </li>
+                    <?php } ?>
                 </ul>
             </details>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Database\Models;
 
 use App\Database\Managers\KahootManager;
+use App\Database\Managers\QuestionManager;
 
 final class Kahoot
 {
@@ -66,7 +67,7 @@ final class Kahoot
         if (isset($this->questions)) {
             return $this->questions;
         } else {
-            $manager = new KahootManager();
+            $manager = new QuestionManager();
             $this->questions = $manager->getQuestionsFormKahoot($this->id);
             return $this->questions;
         }
