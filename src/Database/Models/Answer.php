@@ -2,7 +2,7 @@
 
 namespace App\Database\Models;
 
-final class User
+final class Answer
 {
     private string $id;
     private string $id_question;
