@@ -33,6 +33,7 @@ $Router->post('/kahoot/generate/attempt/', 'KahootController@generate');
 $Router->get('/kahoot/:id/', 'ViewController@showOneKahoot');
 $Router->post('/kahoot/:id/update/', 'KahootController@updateKahoot');
 $Router->get('/kahoot/:id/delete/', 'KahootController@deleteKahoot');
+$Router->get('/kahoot/:id/download/', 'KahootController@downloadKahoot');
 
 // Account
 $Router->get('/account/', 'ViewController@showAccount');

@@ -1,8 +1,6 @@
 @use "../abstracts/" as *;
 
 main {
-  background-image: $bg-img-5;
-
   a {
     color: $color-blue;
     text-decoration: underline;

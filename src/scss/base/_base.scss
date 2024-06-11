@@ -1,11 +1,11 @@
 @use "../abstracts" as *;
 
 :root {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 * {
-    user-select: none;
+  user-select: none;
 }
 
 h1,
@@ -16,55 +16,83 @@ span,
 p,
 a,
 i {
-    color: $color-black;
+  color: $color-black;
 }
 
 * {
-    font-family: $font-body;
-    font-size: $font-xs;
-    font-weight: 300;
+  font-family: $font-body;
+  font-size: $font-xs;
+  font-weight: 300;
 }
 
 h1 {
-    font-family: $font-heading;
-    font-size: $font-xl;
-    font-weight: 700;
+  font-family: $font-heading;
+  font-size: $font-xl;
+  font-weight: 700;
 }
 
 h2 {
-    font-family: $font-heading;
-    font-size: $font-l;
-    font-weight: 700;
+  font-family: $font-heading;
+  font-size: $font-l;
+  font-weight: 700;
 }
 
 h3 {
-    font-family: $font-heading;
-    font-size: $font-m;
-    font-weight: 700;
+  font-family: $font-heading;
+  font-size: $font-m;
+  font-weight: 700;
 }
 
 h4 {
-    font-family: $font-heading;
-    font-size: $font-s;
-    font-weight: 700;
+  font-family: $font-heading;
+  font-size: $font-s;
+  font-weight: 700;
 }
 
 button,
 input[type="button"],
 input[type="checkbox"],
 a {
-    cursor: pointer;
-    border: none;
+  cursor: pointer;
+  border: none;
+}
+
+body {
+  background-size: cover;
+  background-position: center calc(100% + $nav-height);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-clip: border-box;
 }
 
 main {
-    transform: translateY($nav-height);
-    height: calc(100% - $nav-height);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  overflow-x: hidden;
+  transform: translateY($nav-height);
+  height: calc(100% - $nav-height);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+strong {
+  font-weight: bold;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+
+  &-track {
+    background-color: $color-cream;
+  }
+
+  &-thumb {
+    background-color: lighten($color-black, 40%);
+    border-radius: $border-radius-l;
+
+    &:active {
+      background-color: lighten($color-black, 30%);
+    }
+  }
 }

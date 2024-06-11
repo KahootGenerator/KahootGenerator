@@ -1,41 +1,17 @@
 @use "./colors" as *;
 
-// nav height
-
+//nav height
 $nav-height: 99.8px;
 
-// Background Color / Image: 
-
-$bg-img-1: url("/img/bg/homepage.svg"); // Homepage Background
-$bg-img-2: url("/img/bg/generation.svg"); // Kahoot Geenration Background
-$bg-img-3: url("/img/bg/quizz.svg"); // Quizz Background
-$bg-img-4: url("/img/bg/register.svg"); // Register Background
-$bg-img-5: url("/img/bg/login.svg"); // Login Background
-$bg-img-6: url("/img/bg/dashboard.svg"); // Dashboard Background
-
-$bg-form: $color-lightblue;
-$bg-input: $color-cream;
-
-$bg-btn-purple: $color-purple;
-$bg-btn-orange: $color-orange;
-$bg-btn-red: $color-red;
-$bg-btn-lightblue: $color-lightblue;
-
-$bg-question-1: $color-red;
-$bg-question-2: $color-blue;
-$bg-question-3: $color-orange;
-$bg-question-4: $color-green;
-
-// Border Radius / Size
-
+//Border size
 $border-width-m: 2px 2px 4px 2px;
 $border-width-l: 2px 2px 8px 2px;
 $border-width-xl: 2px 2px 10px 2px;
 
-$border-radius-high: 20px;
-$border-radius-medium: 10px;
+//Border radius
+$border-radius-l: 20px;
+$border-radius-m: 10px;
 
-// Box Shadow
-
+//Box Shadow
 $shadow-thick: 0px 4px 200px 30px rgba(0, 0, 0, 0.4);
 $shadow-light: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);

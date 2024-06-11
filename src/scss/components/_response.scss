@@ -1,60 +1,74 @@
 @use "../abstracts" as *;
 
 @mixin responseBtn($bg-color) {
+  background-color: $bg-color;
+  width: 100%;
+  padding: 1rem;
+  border-radius: $border-radius-m;
+  border: 1px solid $color-black;
+  border-width: $border-width-m;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
   .response {
-    width: 40rem;
-    padding: 1rem 0;
-    border-radius: $border-radius-medium;
-    border: 1px solid $color-black;
-    border-width: $border-width-m;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-    cursor: pointer;
-    background-color: $bg-color;
-
     &--checkbox {
-      width: 2.5rem;
-      height: 2.5rem;
-      background-color: $color-white;
-      border: 2px solid $color-black;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.1s;
-
-      img {
+      input {
         display: none;
-        width: 60%;
-        height: 60%;
+
+        &:checked+label {
+          background-color: lighten($color-green, 20%);
+
+          img {
+            display: block;
+          }
+        }
       }
+
+      label {
+        width: 3rem;
+        height: 3rem;
+        background-color: $color-cream;
+        border: 2px solid $color-black;
+        border-radius: 50%;
+        display: block;
+        transition: all 0.1s;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($color-cream, 10%);
+        }
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: none;
+          width: 75%;
+        }
+      }
+
+
     }
 
-    &--p {
-      width: 80%;
+    &--text {
+      width: 100%;
       line-height: 1.5rem;
-      overflow-wrap: break-word; // Automatic line feed
-      word-wrap: break-word; // For older browsers
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: $color-white;
+
+      &:focus-visible {
+        outline: none;
+      }
     }
 
     &--cross {
       width: 2rem;
-    }
-  }
-
-  input[type="checkbox"] {
-    display: none;
-
-    &:checked + .response {
-      .response--checkbox {
-        img {
-          display: block !important;
-        }
-
-        background-color: $color-green !important;
-      }
     }
   }
 }

@@ -1,21 +1,27 @@
 @use '../abstracts/' as *;
 
-.question-block {
-    .question-block-info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+.question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 
-        .question-block-title {
-            font-size: $font-s;
-        }
-        
-        .question-block-actions {
+    .question-block {
+        .question-block-info {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+
+            .question-block-title {
+                font-size: $font-s;
+            }
+
+            .question-block-actions {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+            }
         }
     }
 }

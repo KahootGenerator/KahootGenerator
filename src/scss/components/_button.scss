@@ -1,14 +1,17 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
-@mixin button($color, $width: 200px) {
+@mixin button($color) {
+  height: 50px;
+  width: fit-content;
+  padding: 0 1rem;
+  color: $color-black;
+  text-decoration: none;
   background-color: $color;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
-  width: $width;
-  border: 1px solid black;
-  border-radius: $border-radius-medium;
+  border: 1px solid $color-black;
+  border-radius: $border-radius-m;
   border-width: $border-width-m;
   transition: all 0.8ms;
 
@@ -17,10 +20,10 @@
     border-width: 2px;
   }
 
-  @if ($color == $color-red) {
-    width: 50px !important;
+  @if ($color ==$color-red) {
+    width: 50px;
 
-    & > img {
+    &>img {
       height: 26px;
       width: 24px;
     }
@@ -42,5 +45,21 @@
 
   &-red {
     @include button($color-red);
+  }
+
+  &-xl {
+    padding: 0 4rem;
+  }
+
+  &-l {
+    padding: 0 2rem;
+  }
+
+  &-s {
+    padding: 0 1rem;
+  }
+
+  &-m {
+    padding: 0 0.5rem;
   }
 }
