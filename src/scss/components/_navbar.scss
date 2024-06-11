@@ -5,7 +5,7 @@ header {
   top: 0;
   left: 0;
   width: 100vw;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
   background-color: $color-white;
   border-bottom: $color-black 2px solid;
   box-shadow: $shadow-light;
@@ -19,7 +19,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2.5rem;
 
     .logo {
       min-width: 3.1rem;
@@ -29,7 +29,7 @@ header {
     }
 
     div {
-      padding-left: 5rem;
+      padding-left: 2.5rem;
       border-left: solid $color-black 1px;
       width: 100%;
       display: flex;
@@ -40,8 +40,12 @@ header {
         display: flex;
         gap: 4rem;
 
-        li .link:hover {
-          text-decoration: underline;
+        .link {
+          font-size: $font-xs + 0.2rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

@@ -65,11 +65,27 @@ final class ViewController extends Controller
         //Get the kahoot
         $this->kahootManager = new KahootManager();
         $kahoot = $this->kahootManager->getOne($id);
-
+        
         //Set title
         $this->setPageTitle("Votre Kahoot !");
-
+        
         //Render the view show
         $this->render('/kahoot/show', ['title' => $this->getPageTitle(), "backgroundName" => "kahoot", "kahoot" => $kahoot, "times" => $times]);
+    }
+    
+    public function showAllKahoot(): void {
+        if(isset($_SESSION['user'])) {
+            //set title
+            $this->setPageTitle("Tous vos Kahoot !");
+            
+            //Get the kahoots from user
+            $this->kahootManager = new KahootManager();
+            $kahoots = $this->kahootManager->getFromUser($_SESSION['user']['id']);
+    
+            //Render the view kahoot index
+            $this->render('/kahoot/index', ['title' => $this->getPageTitle(), "backgroundName" => "all_kahoot", "kahoots" => $kahoots]);
+        } else {
+            header("Location: /account/login");
+        }
     }
 }

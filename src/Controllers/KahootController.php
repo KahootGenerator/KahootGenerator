@@ -169,7 +169,8 @@ final class KahootController extends Controller
         $url = 'https://api.openai.com/v1/chat/completions';
         //Generate the prompt
         $prompt = "
-        Crée un quiz en JSON en " . $data["lang"] . " avec " . $data["quantity"] . " questions sur le thème (" . $data["theme"] . ") de difficulté (" . $data["diff"] . "), pour chaque question (120 caractères max), fournis 4 réponses " . (isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "") . " (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers" . (isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "") . "). (Ne me donnes que le json, crée un titre de 50 caractères max). Utilise un JSON de ce type:
+        Crée un quiz en JSON en ".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), pour chaque question (120 caractères max), fournis 4 réponses ".(isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "")." (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers".(isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "")."). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
+
             {
                 \"title\": \"\",
                 \"questions\": [
