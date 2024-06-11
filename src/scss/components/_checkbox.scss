@@ -2,7 +2,8 @@
 
 .checkbox {
     display: none;
-    + label {
+
+    +label {
         width: 30px;
         height: 30px;
         display: block;
@@ -11,10 +12,12 @@
         border-width: $border-width-m;
         border-color: black;
         border-style: solid;
-        border-radius: $border-radius-medium;
+        border-radius: $border-radius-m;
+
         &:hover {
             cursor: pointer;
         }
+
         img {
             position: absolute;
             top: -5px;
@@ -22,8 +25,8 @@
             display: none;
         }
     }
-    
-    &:checked + label {
+
+    &:checked+label {
         img {
             display: block;
             width: 35px;

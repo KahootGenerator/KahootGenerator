@@ -27,8 +27,8 @@ input[type="radio"] {
     summary {
       border-color: $color-blue;
       border-radius: 0;
-      border-top-left-radius: $border-radius-medium;
-      border-top-right-radius: $border-radius-medium;
+      border-top-left-radius: $border-radius-m;
+      border-top-right-radius: $border-radius-m;
 
       &:before {
         content: "";
@@ -47,6 +47,7 @@ input[type="radio"] {
 
     ul {
       border-color: $color-blue;
+
       li {
         border-color: $color-blue;
       }
@@ -60,7 +61,7 @@ input[type="radio"] {
     border-width: $border-width-m;
     border-color: $color-black;
     border-style: solid;
-    border-radius: $border-radius-medium;
+    border-radius: $border-radius-m;
     list-style: none;
     transition: all 0.2s, border-color 0.3s;
 
@@ -106,8 +107,8 @@ input[type="radio"] {
     border-color: $color-black;
     border-style: solid;
     border-top: 0;
-    border-bottom-left-radius: $border-radius-medium;
-    border-bottom-right-radius: $border-radius-medium;
+    border-bottom-left-radius: $border-radius-m;
+    border-bottom-right-radius: $border-radius-m;
     transition: all 0.2s, border-color 0.3s;
 
     li {
@@ -122,7 +123,7 @@ input[type="radio"] {
 
       &:last-child {
         border-bottom: none;
-        border-radius: $border-radius-medium;
+        border-radius: $border-radius-m;
       }
 
       label {

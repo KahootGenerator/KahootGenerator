@@ -4,7 +4,7 @@
   background-color: $bg-color;
   width: 100%;
   padding: 1rem;
-  border-radius: $border-radius-medium;
+  border-radius: $border-radius-m;
   border: 1px solid $color-black;
   border-width: $border-width-m;
   display: flex;
@@ -17,7 +17,7 @@
         display: none;
 
         &:checked+label {
-          background-color: $color-green ;
+          background-color: lighten($color-green, 20%);
 
           img {
             display: block;
@@ -35,6 +35,10 @@
         transition: all 0.1s;
         position: relative;
         cursor: pointer;
+
+        &:hover {
+          background-color: darken($color-cream, 10%);
+        }
 
         img {
           position: absolute;
