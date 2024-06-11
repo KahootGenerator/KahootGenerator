@@ -41,4 +41,16 @@ class KahootManager extends Manager
         }
         return $query->fetch();
     }
+
+    public function getFromUser(string $id): array {
+        $query = $this->_connexion->prepare('SELECT * FROM kahoot WHERE id_user = ?');
+        $query->execute([
+            $id
+        ]);
+        $kahoots = [];
+        while($match = $query->fetch()) {
+            $kahoots[] = new Kahoot($match['id'], $match['id_user'], $match['id_difficulty'], $match['id_language'], $match['title'], $match['theme'], $match['date']);
+        }
+        return $kahoots;
+    }
 }
