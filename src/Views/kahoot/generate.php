@@ -9,22 +9,28 @@ use App\Helper;
     <div class="form-field--full">
         <label for="theme">Thème :</label>
         <input class="field" type="text" id="theme" name="theme">
+        <span class="error">
+            <?= Helper::error("theme"); ?>
+        </span>
     </div>
     <div class="form-field--double">
         <div>
             <label for="quantity">Nombre de question :</label>
             <input class="field" type="number" id="quantity" name="quantity" min="1" max="20" value="1">
+            <span class="error">
+                <?= Helper::error("quantity"); ?>
+            </span>
         </div>
 
         <div>
 
             <label for="lang">Langue du questionnaire :</label>
 
-            <details class="select" id="language">
+            <details class="select" id="lang">
                 <summary>
-                    <input type="radio" name="language" title="Choisir une langue" checked>
+                    <input type="radio" name="lang" title="Choisir une langue" checked>
                     <?php foreach ($languages as $language) { ?>
-                        <input type="radio" name="language" id="language_<?= Helper::escape($language->getId()) ?>"
+                        <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
                             title="<?= Helper::escape($language->getLibelle()) ?>">
                     <?php } ?>
                 </summary>
@@ -32,11 +38,14 @@ use App\Helper;
                     <?php foreach ($languages as $language) { ?>
                         <li>
                             <label
-                                for="language_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
             </details>
+            <span class="error">
+                <?= Helper::error("language"); ?>
+            </span>
         </div>
 
     </div>
@@ -44,11 +53,11 @@ use App\Helper;
         <div>
             <label for="lang">Difficulté :</label>
 
-            <details class="select" id="difficultie">
+            <details class="select" id="diff">
                 <summary>
-                    <input type="radio" name="difficultie" title="Choisir une difficulté" checked>
+                    <input type="radio" name="diff" title="Choisir une difficulté" checked>
                     <?php foreach ($difficulties as $difficultie) { ?>
-                        <input type="radio" name="difficultie" id="difficultie_<?= Helper::escape($difficultie->getId()) ?>"
+                        <input type="radio" name="diff" id="diff_<?= Helper::escape($difficultie->getId()) ?>"
                             title="<?= Helper::escape($difficultie->getLibelle()) ?>">
                     <?php } ?>
                 </summary>
@@ -56,11 +65,14 @@ use App\Helper;
                     <?php foreach ($difficulties as $difficultie) { ?>
                         <li>
                             <label
-                                for="difficultie_<?= Helper::escape($difficultie->getId()) ?>"><?= Helper::escape($difficultie->getLibelle()) ?></label>
+                                for="diff_<?= Helper::escape($difficultie->getId()) ?>"><?= Helper::escape($difficultie->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
             </details>
+            <span class="error">
+                <?= Helper::error("diff"); ?>
+            </span>
         </div>
 
     </div>
