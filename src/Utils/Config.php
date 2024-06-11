@@ -5,3 +5,5 @@ const DBNAME = 'kahoot-generator';
 
 const USERNAME = 'root';
 const PASSWORD = '';
+
+const DATE_FORMAT = 'd/m/Y';
