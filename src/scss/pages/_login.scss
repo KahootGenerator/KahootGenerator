@@ -2,7 +2,8 @@
 
 main {
   a {
-    color: $color-blue;
+    font-weight: bold;
+    color: darken($color-blue, 10%);
     text-decoration: underline;
   }
 }
