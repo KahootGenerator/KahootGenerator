@@ -25,7 +25,7 @@ use App\Helper;
                     <input type="radio" name="lang" title="Choisir une langue" checked>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
-                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId();?>">
+                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId(); ?>">
                     <?php } ?>
                 </summary>
                 <ul>
@@ -49,7 +49,7 @@ use App\Helper;
                     <input type="radio" name="diff" title="Choisir une difficulté" checked>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
-                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId();?>">
+                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId(); ?>">
                     <?php } ?>
                 </summary>
                 <ul>
@@ -80,7 +80,7 @@ use App\Helper;
     </div>
 
     <div>
-        <input type="submit" value="Valider" class="button-orange">
+        <input type="submit" value="Valider" class="button-orange button-l">
     </div>
 
 </form>

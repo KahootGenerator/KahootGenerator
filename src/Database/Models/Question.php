@@ -8,15 +8,15 @@ final class Question
 {
     private string $id;
     private string $id_kahoot;
-    private int $id_time;
+    private int $time;
     private string $question;
     private array $answers;
 
-    public function __construct(string $id, string $id_kahoot, int $id_time, string $question)
+    public function __construct(string $id, string $id_kahoot, int $time, string $question)
     {
         $this->setId($id);
         $this->setIdKahoot($id_kahoot);
-        $this->setIdTime($id_time);
+        $this->setTime($time);
         $this->setQuestion($question);
     }
 
@@ -30,9 +30,9 @@ final class Question
         return $this->id_kahoot;
     }
 
-    public function getid_time(): int
+    public function gettime(): int
     {
-        return $this->id_time;
+        return $this->time;
     }
 
     public function getQuestion(): string
@@ -61,9 +61,9 @@ final class Question
         $this->id_kahoot = $id_kahoot;
     }
 
-    public function setIdTime(int $id_time): void
+    public function setTime(int $time): void
     {
-        $this->id_time = $id_time;
+        $this->time = $time;
     }
 
     public function setQuestion(string $question): void
