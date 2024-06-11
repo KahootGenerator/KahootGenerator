@@ -26,7 +26,7 @@ final class KahootController extends Controller
         if(isset($_SESSION['user'])) {
             //Validate the fields
             $this->validator->validate([
-                "theme" => ["required", "alphaSpace"],
+                "theme" => ["required", "max:50"],
                 "quantity" => ["required", "numeric"],
                 "lang" => ["required", "numeric"],
                 "diff" => ["required", "numeric"]
