@@ -16,7 +16,6 @@ use App\Helper;
                             <details class="select">
                                 <summary>
                                     <?php foreach ($times as $time) { ?>
-
                                         <input type="radio" name="<?= $question->getId();?>-time"
                                             id="<?= $question->getId();?>-time-<?= $time->getId() ?>"
                                             title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
@@ -28,12 +27,13 @@ use App\Helper;
                                     <?php foreach ($times as $time) { ?>
                                         <li>
                                             <label
-                                                for="<?= $question->getId();?>-time-<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
+                                                for="<?= $question->getId(); ?>-time-<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
                                         </li>
                                     <?php } ?>
                                 </ul>
                             </details>
-                            <button class="button-red"><img src="/img/utils/trash.svg"></button>
+                            <a href="/kahoot/<?= Helper::escape($question->getId()); ?>/delete/" class="button-red"
+                                title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
                         </div>
                     </div>
                 </article>
@@ -51,9 +51,7 @@ use App\Helper;
                                         <img src="/img/utils/check.svg" alt="Checked">
                                     </label>
                                 </div>
-                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer">
-                                    <?= Helper::escape($answer->getLibelle()); ?>
-                                </p>
+                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer"><?= Helper::escape($answer->getLibelle()); ?></p>
                                 <button class="response--cross">
                                     <img src="/img/utils/cross.svg" alt="Cross">
                                 </button>
