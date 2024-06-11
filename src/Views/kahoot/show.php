@@ -16,8 +16,8 @@ use App\Helper;
                             <details class="select">
                                 <summary>
                                     <?php foreach ($times as $time) { ?>
-                                        <input type="radio" name="<?= $question->getId(); ?>-time"
-                                            id="<?= $question->getId(); ?>-time-<?= $time->getId() ?>"
+                                        <input type="radio" name="<?= $question->getId();?>-time"
+                                            id="<?= $question->getId();?>-time-<?= $time->getId() ?>"
                                             title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
                                                   echo "checked";
                                               } ?>>
@@ -39,7 +39,8 @@ use App\Helper;
                 </article>
                 <div class="question">
                     <p class="question-title" id="<?= $question->getId(); ?>-title" contenteditable="plaintext-only">
-                        <?= Helper::escape($question->getQuestion()); ?></p>
+                        <?= Helper::escape($question->getQuestion()); ?>
+                    </p>
                     <div class="responses-wrapper">
                         <?php foreach ($question->getAnswers() as $answer) { ?>
                             <div class="response">
@@ -50,8 +51,7 @@ use App\Helper;
                                         <img src="/img/utils/check.svg" alt="Checked">
                                     </label>
                                 </div>
-                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer">
-                                    <?= Helper::escape($answer->getLibelle()); ?></p>
+                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer"><?= Helper::escape($answer->getLibelle()); ?></p>
                                 <button class="response--cross">
                                     <img src="/img/utils/cross.svg" alt="Cross">
                                 </button>
@@ -61,6 +61,10 @@ use App\Helper;
                 </div>
             </div>
         <?php } ?>
+    </div>
+    <div>
+        <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
+            Kahoot !</a>
     </div>
 </div>
 <script type="module" src="/js/components/select.js"></script>
