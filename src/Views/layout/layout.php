@@ -24,8 +24,13 @@
                         <a href="/" class="link">Accueil</a>
                     </li>
                     <li>
-                        <a href="/kahoot/generate/" class="link">Créer un kahoot</a>
+                        <a href="/kahoot/generate/" class="link">Créer un Kahoot</a>
                     </li>
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <li>
+                            <a href="/kahoot/" class="link">Mes Kahoot</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <ul>
                     <?php if (!isset($_SESSION['user'])) { ?>
