@@ -78,3 +78,21 @@ main {
 strong {
   font-weight: bold;
 }
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+
+  &-track {
+    background-color: $color-cream;
+  }
+
+  &-thumb {
+    background-color: lighten($color-black, 40%);
+    border-radius: $border-radius-l;
+
+    &:active {
+      background-color: lighten($color-black, 30%);
+    }
+  }
+}
