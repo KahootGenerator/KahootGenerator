@@ -22,7 +22,9 @@ final class KahootController extends Controller
     }
     public function generate(): void
     {
+        //If user is signed in
         if(isset($_SESSION['user'])) {
+            //Validate the fields
             $this->validator->validate([
                 "theme" => ["required", "alphaSpace"],
                 "quantity" => ["required", "numeric"],
@@ -32,30 +34,44 @@ final class KahootController extends Controller
             $_SESSION["old"] = $_POST;
     
             if(!$this->validator->errors()) {
+                //Search the difficulty and the language in the database
                 $dm = new DifficultyManager();
                 $diff = $dm->getOne($_POST["diff"]);
                 $lm = new LanguageManager();
                 $lang = $lm->getOne($_POST["lang"]);
                 if($diff) {
                     if($lang) {
+                        //Prepare the data for the prompt
                         $data = ["theme" => $_POST['theme'], "quantity" => $_POST['quantity'], "lang" => $_POST['lang'], "diff" => $_POST['diff']];
                         if(isset($_POST['includeBools'])) {
+                            //If checked include questions true or false
                             $data["includeBools"] = true;
                         }
                         if(isset($_POST['multiCorrect'])) {
+                            //If checked include questions with multiple correct answers
                             $data["multiCorrect"] = true;
                         }
                         try {
+                            //Call the API
                             $quiz = $this->callAPI($data);
+                            //Generate an uniq id for the kahoot
                             $kahoot_id = uniqid();
+                            //Create the kahoot in the database
                             $this->kahootManager->create($kahoot_id, $diff['id'], $lang['id'], $quiz->title);
+                            //Instantiate the Managers for question and answer
                             $qm = new QuestionManager();
                             $am = new AnswerManager();
+                            //For each generated questions
                             foreach($quiz->questions as $question) {
+                                //Generate an uniq id for the question
                                 $question_id = uniqid();
+                                //Create the question in the database
                                 $qm->create($question_id, $kahoot_id, $question->question);
+                                //For each generated answers
                                 foreach($question->answers as $i => $answer) {
+                                    //Generate an uniq id for the answer
                                     $answer_id = uniqid();
+                                    //Create the answer in the database
                                     $am->create($answer_id, $question_id, $answer, in_array($i, $question->correct_answers));
                                 }
                             }
@@ -64,15 +80,19 @@ final class KahootController extends Controller
                             echo $e;
                         }
                     } else {
+                        //Return an error if language not found
                         $_SESSION["error"]["lang"] = "La langue choisie n'a pas été trouvée ou n'est pas prise en charge !";
                     }
                 } else {
+                    //Return an error if difficulty not found
                     $_SESSION["error"]["diff"] = "La difficulté choisie n'a pas été trouvée !";
                 }
             } else {
+                //Return errors
                 header("Location: /kahoot/generate");
             }
         } else {
+            //Redirect to login page
             header("Location: /account/login");
         }
     }
