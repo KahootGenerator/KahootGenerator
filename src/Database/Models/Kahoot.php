@@ -59,7 +59,8 @@ final class Kahoot
 
     public function getDate(): string
     {
-        return $this->date;
+        $date = new \DateTime($this->date);
+        return $date->format(DATE_FORMAT);
     }
 
     public function getQuestions(): array
