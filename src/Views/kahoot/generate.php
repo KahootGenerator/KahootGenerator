@@ -9,11 +9,17 @@ use App\Helper;
     <div class="form-field--full">
         <label for="theme">Thème :</label>
         <input class="field" type="text" id="theme" name="theme">
+        <span class="error">
+            <?= Helper::error("theme"); ?>
+        </span>
     </div>
     <div class="form-field--double">
         <div>
             <label for="quantity">Nombre de question :</label>
             <input class="field" type="number" id="quantity" name="quantity" min="1" max="20" value="1">
+            <span class="error">
+                <?= Helper::error("quantity"); ?>
+            </span>
         </div>
 
         <div>
@@ -25,6 +31,7 @@ use App\Helper;
                     <input type="radio" name="lang" title="Choisir une langue" checked>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
+
                             title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId(); ?>">
                     <?php } ?>
                 </summary>
@@ -37,6 +44,9 @@ use App\Helper;
                     <?php } ?>
                 </ul>
             </details>
+            <span class="error">
+                <?= Helper::error("language"); ?>
+            </span>
         </div>
 
     </div>
@@ -47,6 +57,7 @@ use App\Helper;
             <details class="select" id="diff">
                 <summary>
                     <input type="radio" name="diff" title="Choisir une difficulté" checked>
+
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
                             title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId(); ?>">
@@ -61,6 +72,9 @@ use App\Helper;
                     <?php } ?>
                 </ul>
             </details>
+            <span class="error">
+                <?= Helper::error("diff"); ?>
+            </span>
         </div>
 
     </div>
