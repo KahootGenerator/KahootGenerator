@@ -26,6 +26,6 @@ use App\Helper;
 
     <div>
         <p>Vous n'avez pas de compte ?</p>
-        <a href="/account/register/">Créer un compte</a>
+        <a href="/account/register/" class="link-purple">Créer un compte</a>
     </div>
 </form>
