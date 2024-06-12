@@ -26,6 +26,8 @@
         <div>
             <h3>Comment générer un Kahoot :</h3>
             <ol>
+                <li><a class="link-blue" href="/account/register/">Inscrivez-vous</a> ou <a class="link-blue"
+                        href="/account/login/">connectez-vous</a> à votre compte pour enregistré tous vos Kahoot</li>
                 <li>Accédez au formulaire de <a class="link-blue" href="/kahoot/generate/">génération de Kahoot</a>.
                 </li>
                 <li>Entrez votre sujet dans le premier champ.</li>
