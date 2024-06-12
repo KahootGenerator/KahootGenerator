@@ -34,4 +34,11 @@ class QuestionManager extends Manager
             $question
         ]);
     }
+
+    public function delete(string $id): void {
+        $query = $this->_connexion->prepare('DELETE FROM question WHERE id = ?');
+        $query->execute([
+            $id
+        ]);
+    }
 }

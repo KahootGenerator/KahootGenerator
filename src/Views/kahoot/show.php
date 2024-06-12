@@ -35,7 +35,7 @@ use App\Helper;
                                     <?php } ?>
                                 </ul>
                             </details>
-                            <a href="/kahoot/<?= Helper::escape($question->getId()); ?>/delete/" class="button-red"
+                            <a href="/kahoot/<?= $kahoot->getId();?>/deleteQuestion/<?= Helper::escape($question->getId()); ?>" class="button-red"
                                 title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
                         </div>
                     </div>
