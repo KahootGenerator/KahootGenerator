@@ -1,0 +1,9 @@
+@use "../abstracts/" as *;
+
+.error-404 {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
