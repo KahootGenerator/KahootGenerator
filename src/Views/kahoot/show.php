@@ -6,8 +6,8 @@ use App\Helper;
 <div class="main-container not-align-container">
     <h1><?= $data["title"] ?></h1>
     <div class="kahoot-infos">
-        <h2>Titre : <?= $kahoot->getTitle();?></h2>
-        <h2>Difficulté : <?= $kahoot->getDifficulty();?></h2>
+        <h2>Titre : <?= $kahoot->getTitle(); ?></h2>
+        <h2>Difficulté : <?= $kahoot->getDifficulty(); ?></h2>
     </div>
     <div class="question-container">
         <?php foreach ($kahoot->getQuestions() as $i => $question) { ?>
@@ -16,11 +16,11 @@ use App\Helper;
                     <h2 class="question-block-title">Question <?= $i + 1; ?></h2>
                     <div id="<?= $question->getId(); ?>-question">
                         <div class="question-block-actions">
-                            <details class="select">
+                            <details class="select" data-selected="30s">
                                 <summary>
                                     <?php foreach ($times as $time) { ?>
-                                        <input type="radio" name="<?= $question->getId();?>-time"
-                                            id="<?= $question->getId();?>-time-<?= $time->getId() ?>"
+                                        <input type="radio" name="<?= $question->getId(); ?>-time"
+                                            id="<?= $question->getId(); ?>-time-<?= $time->getId() ?>"
                                             title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
                                                   echo "checked";
                                               } ?>>
@@ -35,13 +35,14 @@ use App\Helper;
                                     <?php } ?>
                                 </ul>
                             </details>
-                            <a href="/kahoot/<?= $kahoot->getId();?>/deleteQuestion/<?= Helper::escape($question->getId()); ?>" class="button-red"
-                                title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
+                            <a href="/kahoot/<?= $kahoot->getId(); ?>/deleteQuestion/<?= Helper::escape($question->getId()); ?>"
+                                class="button-red" title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
                         </div>
                     </div>
                 </article>
                 <div class="question">
-                    <p class="question-title" id="<?= $question->getId(); ?>-title" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion()); ?></p>
+                    <p class="question-title" id="<?= $question->getId(); ?>-title" contenteditable="plaintext-only">
+                        <?= Helper::escape($question->getQuestion()); ?></p>
                     <div class="responses-wrapper">
                         <?php foreach ($question->getAnswers() as $answer) { ?>
                             <div class="response">
@@ -52,7 +53,9 @@ use App\Helper;
                                         <img src="/img/utils/check.svg" alt="Checked">
                                     </label>
                                 </div>
-                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer"><?= Helper::escape($answer->getLibelle()); ?></p>
+                                <p class="response--text" contenteditable="plaintext-only" id="<?= $answer->getId(); ?>-answer">
+                                    <?= Helper::escape($answer->getLibelle()); ?>
+                                </p>
                                 <button class="response--cross">
                                     <img src="/img/utils/cross.svg" alt="Cross">
                                 </button>

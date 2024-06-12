@@ -27,7 +27,7 @@ use App\Helper;
 
             <label for="lang">Langue du questionnaire :</label>
 
-            <details class="select" id="lang">
+            <details class="select" id="lang" data-selected="Français">
                 <summary>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
@@ -54,7 +54,7 @@ use App\Helper;
         <div>
             <label for="diff">Difficulté :</label>
 
-            <details class="select" id="diff">
+            <details class="select" id="diff" data-selected="Aléatoire">
                 <summary>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
