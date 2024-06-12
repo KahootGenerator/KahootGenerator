@@ -38,7 +38,8 @@ use App\Helper;
                 <ul>
                     <?php foreach ($languages as $language) { ?>
                         <li>
-                            <label for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                            <label
+                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -64,7 +65,8 @@ use App\Helper;
                 <ul>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <li>
-                            <label for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
+                            <label
+                                for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -91,7 +93,7 @@ use App\Helper;
     </div>
 
     <div>
-        <input type="submit" value="Valider" class="button-orange button-l">
+        <input type="submit" value="Valider" class="button-orange button-xl">
     </div>
 
 </form>

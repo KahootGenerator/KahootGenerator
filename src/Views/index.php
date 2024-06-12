@@ -2,7 +2,7 @@
     <h1><?= $data["title"] ?></h1>
     <p>Élaborez des questionnaires interactifs Kahoot en quelques minutes ! <br> Simplifiez-vous la vie grâce à notre
         application simple, dynamique et novatrice.</p>
-    <a href="/kahoot/generate/" class="button-purple">Générér un kahoot</a>
+    <a href="/kahoot/generate/" class="button-purple button-l">Générér un kahoot</a>
     <article>
         <h2>Explication</h2>
         <iframe src="https://www.youtube.com/embed/j_tHtq_r5ko?si=g8DKppG8lhpyVugI&amp;start=4"
@@ -44,5 +44,5 @@
             </ol>
         </div>
     </article>
-    <a href="/kahoot/generate/" class="button-purple">Générér un kahoot</a>
+    <a href="/kahoot/generate/" class="button-purple button-l">Générér un kahoot</a>
 </section>
