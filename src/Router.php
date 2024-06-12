@@ -75,7 +75,7 @@ class Router
             }
         }
         $vm = new ViewController();
-        $vm->render('errors/404', ['title' => '404', 'backgroundName' => 'generation']);
+        $vm->render('errors/404', ['title' => '404', 'backgroundName' => '404']);
 
         return null;
     }

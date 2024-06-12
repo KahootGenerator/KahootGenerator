@@ -1,6 +1,5 @@
-<article class="error-404 main-container-lightblue">
+<article class="error-404 main-container">
     <h1>404</h1>
-    <p>Oups! Page non trouvée.</p>
-    <p>La page que vous recherchez n'existe pas.</p>
-    <a href="/" class="button-orange">Retourner à la page d'accueil</a>
+    <p> <span>Oups! Page non trouvée.</span> La page que vous recherchez n'existe pas.</p>
+    <a href="/" class="button-orange button-l">Retourner à la page d'accueil</a>
 </article>
