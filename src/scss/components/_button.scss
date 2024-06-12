@@ -22,6 +22,7 @@
 
   @if ($color ==$color-red) {
     width: 50px;
+    padding: 0;
 
     & > img {
       height: 26px;
