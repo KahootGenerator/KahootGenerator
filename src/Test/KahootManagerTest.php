@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use App\Database\Managers\KahootManager;
 
-include "src/Utils/Config.php";
+include_once "src/Utils/Config.php";
 final class KahootManagerTest extends TestCase
 {
     private KahootManager $manager;
