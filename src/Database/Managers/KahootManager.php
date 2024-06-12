@@ -29,7 +29,7 @@ class KahootManager extends Manager
 
     public function getOne(string $id)
     {
-        $sql = "SELECT * FROM kahoot WHERE id = :id";
+        $sql = "SELECT kahoot.id as id, id_user, difficulty.libelle as difficulty, language.libelle as language, title, theme, date FROM kahoot JOIN difficulty ON kahoot.id_difficulty = difficulty.id JOIN language ON kahoot.id_language = language.id WHERE kahoot.id = :id";
 
         $query = $this->_connexion->prepare($sql);
 
@@ -37,19 +37,19 @@ class KahootManager extends Manager
 
         $match = $query->fetch();
         if($match) {
-            return new Kahoot($match['id'], $match['id_user'], $match['id_difficulty'], $match['id_language'], $match['title'], $match['theme'], $match['date']);
+            return new Kahoot($match['id'], $match['id_user'], $match['difficulty'], $match['language'], $match['title'], $match['theme'], $match['date']);
         }
         return $query->fetch();
     }
 
     public function getFromUser(string $id): array {
-        $query = $this->_connexion->prepare('SELECT * FROM kahoot WHERE id_user = ?');
+        $query = $this->_connexion->prepare('SELECT kahoot.id as id, id_user, difficulty.libelle as difficulty, language.libelle as language, title, theme, date FROM kahoot JOIN difficulty ON kahoot.id_difficulty = difficulty.id JOIN language ON kahoot.id_language = language.id WHERE id_user = ?');
         $query->execute([
             $id
         ]);
         $kahoots = [];
         while($match = $query->fetch()) {
-            $kahoots[] = new Kahoot($match['id'], $match['id_user'], $match['id_difficulty'], $match['id_language'], $match['title'], $match['theme'], $match['date']);
+            $kahoots[] = new Kahoot($match['id'], $match['id_user'], $match['difficulty'], $match['language'], $match['title'], $match['theme'], $match['date']);
         }
         return $kahoots;
     }
