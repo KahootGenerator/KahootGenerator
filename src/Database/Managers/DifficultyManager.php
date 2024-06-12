@@ -16,7 +16,7 @@ class DifficultyManager extends Manager
 
     public function getDifficulties(): array
     {
-        $query = $this->_connexion->query('SELECT * FROM difficulty ORDER BY libelle');
+        $query = $this->_connexion->query('SELECT * FROM difficulty');
         $difficulties = [];
         while ($match = $query->fetch()) {
             $difficulties[] = new Difficulty($match['id'], $match['libelle']);
@@ -32,6 +32,10 @@ class DifficultyManager extends Manager
 
         $query->execute(['id' => $id]);
 
-        return $query->fetch();
+        $match = $query->fetch();
+        if ($match) {
+            return new Difficulty($match['id'], $match['libelle']);
+        }
+        return null;
     }
 }

@@ -28,3 +28,4 @@ use App\Helper;
         <a href="/account/login/" class="link-purple">Connectez-vous !</a>
     </div>
 </form>
+<script type="module" src="/js/validator-form/auth.js"></script>
