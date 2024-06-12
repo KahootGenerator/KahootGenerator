@@ -53,4 +53,12 @@ class KahootManager extends Manager
         }
         return $kahoots;
     }
+
+    public function delete(string $id): void {
+        $query = $this->_connexion->prepare('DELETE FROM kahoot WHERE id = ? AND id_user = ?');
+        $query->execute([
+            $id,
+            $_SESSION['user']['id']
+        ]);
+    }
 }
