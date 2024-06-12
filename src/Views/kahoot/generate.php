@@ -1,9 +1,10 @@
 <?php
+
 use App\Helper;
 
 ?>
 
-<form action="/kahoot/generate/attempt" method="POST" class="form">
+<form action="/kahoot/generate/attempt" method="POST" class="form" id="formGen">
     <h1><?= $data["title"] ?></h1>
 
     <div class="form-field--full">
@@ -37,8 +38,7 @@ use App\Helper;
                 <ul>
                     <?php foreach ($languages as $language) { ?>
                         <li>
-                            <label
-                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                            <label for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -64,8 +64,7 @@ use App\Helper;
                 <ul>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <li>
-                            <label
-                                for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
+                            <label for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -96,5 +95,20 @@ use App\Helper;
     </div>
 
 </form>
+<div class="main-container" id="waitingContainer">
+    <h1>Génération du Kahoot</h1>
+    <div class="spinner-container">
+        <div class="pencil">
+            <div class="pencil__ball-point"></div>
+            <div class="pencil__cap"></div>
+            <div class="pencil__cap-base"></div>
+            <div class="pencil__middle"></div>
+            <div class="pencil__eraser"></div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <span id="generationText">Votre kahoot en en cours de génération. Merci de patienter</span>
+</div>
 <script type="module" src="/js/validator-form/generator.js"></script>
 <script type="module" src="/js/components/select.js"></script>
+<script type="module" src="/js/apiWaiting.js"></script>

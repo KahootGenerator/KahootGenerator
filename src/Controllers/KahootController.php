@@ -116,6 +116,27 @@ final class KahootController extends Controller
     }
     public function deleteKahoot(string $id): void
     {
+        //If user is signed in
+        if(isset($_SESSION['user'])) {
+            //Delete the kahoot with the id
+            $this->kahootManager->delete($id);
+            header("Location: /kahoot");
+        } else {
+            //Else 
+            header("Location: /account/login");
+        }
+    }
+    public function deleteQuestion(string $id_kahoot, string $id): void {
+        //If user is signed in
+        if(isset($_SESSION['user'])) {
+            //Delete the kahoot with the id
+            $qm = new QuestionManager();
+            $qm->delete($id);
+            header("Location: /kahoot/".$id_kahoot);
+        } else {
+            //Else 
+            header("Location: /account/login");
+        }
     }
     public function downloadKahoot(string $id): void
     {

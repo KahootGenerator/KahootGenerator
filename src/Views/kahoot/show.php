@@ -5,6 +5,10 @@ use App\Helper;
 
 <div class="main-container not-align-container">
     <h1><?= $data["title"] ?></h1>
+    <div class="kahoot-infos">
+        <h2>Titre : <?= $kahoot->getTitle();?></h2>
+        <h2>Difficulté : <?= $kahoot->getDifficulty();?></h2>
+    </div>
     <div class="question-container">
         <?php foreach ($kahoot->getQuestions() as $i => $question) { ?>
             <div class="question-block">
@@ -31,7 +35,7 @@ use App\Helper;
                                     <?php } ?>
                                 </ul>
                             </details>
-                            <a href="/kahoot/<?= Helper::escape($question->getId()); ?>/delete/" class="button-red"
+                            <a href="/kahoot/<?= $kahoot->getId();?>/deleteQuestion/<?= Helper::escape($question->getId()); ?>" class="button-red"
                                 title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
                         </div>
                     </div>
@@ -59,7 +63,7 @@ use App\Helper;
             </div>
         <?php } ?>
     </div>
-    <div>
+    <div class="download-block">
         <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
             Kahoot !</a>
     </div>
