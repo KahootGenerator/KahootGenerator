@@ -5,7 +5,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <!-- PROJECT LOGO -->
@@ -18,19 +17,32 @@
   <h3 align="center">Kahoot Generator</h3>
 
   <p align="center">
-     A simple Kahoot generator powered by ChatGPT-4o
+     An advanced Kahoot generator powered by ChatGPT-4o
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/KahootGenerator/KahootGenerator/README.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://youtube.com">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/KahootGenerator/KahootGenerator/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/KahootGenerator/KahootGenerator/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
+## About the Project
+
+Many people spend a lot of time creating Kahoot quizzes. Our solution is to make creating Kahoot quizzes fast, easy, and innovative with our app.
+
+Our application has several features that help people create a Kahoot quiz as quickly as possible, such as :
+* AI Generation by muliple factors :
+  * Specify a theme
+  * Specify a questions count
+  * Specify a difficulty
+  * Specify a language
+* Quiz customization :
+  * Edit questions title and answers
+  * Add / Remove questions and their associated answers
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
