@@ -104,7 +104,7 @@ INSERT INTO `time`(seconds) VALUES (5), (10), (20), (30), (60), (90), (120), (24
 create table `user`
 (
    id              varchar(13) not null,
-   username             varchar(20) not null,
+   username             varchar(50) not null,
    password             varchar(255) not null,
    primary key (id)
 )Engine = InnoDB;
