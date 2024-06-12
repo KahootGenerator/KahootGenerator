@@ -16,7 +16,7 @@ use App\Helper;
     <div class="form-field--double">
         <div>
             <label for="quantity">Nombre de question :</label>
-            <input class="field" type="number" id="quantity" name="quantity" min="1" max="20" value="1">
+            <input class="field" type="number" id="quantity" name="quantity" value="1">
             <span class="error">
                 <?= Helper::error("quantity"); ?>
             </span>
@@ -28,10 +28,9 @@ use App\Helper;
 
             <details class="select" id="lang">
                 <summary>
-                    <input type="radio" name="lang" title="Choisir une langue" checked>
+                    <input type="radio" name="lang" title="Choisir une langue" value="0" checked>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
-
                             title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId(); ?>">
                     <?php } ?>
                 </summary>
@@ -45,7 +44,7 @@ use App\Helper;
                 </ul>
             </details>
             <span class="error">
-                <?= Helper::error("language"); ?>
+                <?= Helper::error("lang"); ?>
             </span>
         </div>
 
@@ -56,7 +55,7 @@ use App\Helper;
 
             <details class="select" id="diff">
                 <summary>
-                    <input type="radio" name="diff" title="Choisir une difficulté" checked>
+                    <input type="radio" name="diff" title="Choisir une difficulté" value="0" checked>
 
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
@@ -98,4 +97,5 @@ use App\Helper;
     </div>
 
 </form>
+<script type="module" src="/js/validator-form/generator.js"></script>
 <script type="module" src="/js/components/select.js"></script>

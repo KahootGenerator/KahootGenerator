@@ -29,3 +29,4 @@ use App\Helper;
         <a href="/account/register/" class="link-purple">Créer un compte</a>
     </div>
 </form>
+<script type="module" src="/js/validator-form/auth.js"></script>

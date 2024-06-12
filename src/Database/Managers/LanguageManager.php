@@ -32,6 +32,10 @@ class LanguageManager extends Manager
 
         $query->execute(['id' => $id]);
 
-        return $query->fetch();
+        $match = $query->fetch();
+        if ($match) {
+            return new Language($match['id'], $match['libelle']);
+        }
+        return null;
     }
 }
