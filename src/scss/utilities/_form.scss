@@ -1,0 +1,76 @@
+@use "../abstracts/" as *;
+
+@mixin formField($width) {
+  height: fit-content;
+  width: $width;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label,
+  span {
+    margin-left: 15px;
+    font-family: $font-body;
+    font-size: $font-xs;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  .select {
+    height: 50px;
+    width: 100%;
+  }
+}
+
+.form {
+  padding: 25px;
+  background-color: $color-lightblue;
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  border: $color-black solid 1px;
+  border-width: $border-width-xl;
+  border-radius: $border-radius-high;
+  box-shadow: $shadow-thick;
+
+  a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.form-field--full {
+  @include formField(100%);
+}
+
+.form-field--75 {
+  @include formField(75%);
+}
+
+.form-field--double {
+  @include formField(100%);
+  flex-direction: row;
+  gap: 5%;
+
+  div {
+    width: 47.5%;
+  }
+}
+
+.form-field--checkbox {
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+
+  label {
+    font-family: $font-body;
+    font-size: $font-xs;
+    margin-left: 0;
+  }
+}

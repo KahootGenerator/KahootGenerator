@@ -5,7 +5,7 @@ namespace App\Core;
 abstract class Controller
 {
 
-    private string $pageTitle;
+    private string $pageTitle = "Kahoot Generator";
 
     public function getPageTitle(): string
     {
@@ -16,7 +16,7 @@ abstract class Controller
     {
         $this->pageTitle = $pageTitle;
     }
-    
+
     public function loadModelManager(string $model)
     {
         $modelManagerPath = "App\Database\Managers\\$model";
@@ -26,6 +26,10 @@ abstract class Controller
 
     public function render(string $path, array $data = []): void
     {
+        if (!isset($data['title'])) {
+            $data['title'] = $this->getPageTitle();
+        }
+
         extract($data);
 
         ob_start();
@@ -34,6 +38,6 @@ abstract class Controller
 
         $content = ob_get_clean();
 
-        require_once '../src/Views/layout/default.php';
+        require_once '../src/Views/layout/layout.php';
     }
 }

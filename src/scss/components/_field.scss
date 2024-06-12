@@ -1,0 +1,26 @@
+@use "../abstracts/" as *;
+
+@mixin field($border-color) {
+  background-color: $color-cream;
+  padding: 0.5rem 1.2rem;
+  border-style: solid;
+  border-color: $border-color;
+  border-width: $border-width-m;
+  border-radius: $border-radius-medium;
+}
+
+.field {
+  @include field($color-black);
+
+  &:focus {
+    border-color: $color-blue;
+  }
+}
+
+.field-error {
+  @include field($color-red);
+}
+
+.field-valid {
+  @include field($color-green);
+}
