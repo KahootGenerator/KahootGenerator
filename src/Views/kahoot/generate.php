@@ -28,10 +28,10 @@ use App\Helper;
 
             <details class="select" id="lang">
                 <summary>
-                    <input type="radio" name="lang" title="Choisir une langue" value="0" checked>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
-                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId(); ?>">
+                            title="<?= Helper::escape($language->getLibelle()) ?>" value="<?= $language->getId(); ?>"
+                            <?= Helper::escape($language->getLibelle()) === "Français" ? "checked" : "" ?>>
                     <?php } ?>
                 </summary>
                 <ul>
@@ -55,11 +55,10 @@ use App\Helper;
 
             <details class="select" id="diff">
                 <summary>
-                    <input type="radio" name="diff" title="Choisir une difficulté" value="0" checked>
-
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
-                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId(); ?>">
+                            title="<?= Helper::escape($difficulty->getLibelle()) ?>" value="<?= $difficulty->getId(); ?>"
+                            <?= Helper::escape($difficulty->getLibelle()) === "Aléatoire" ? "checked" : "" ?>>
                     <?php } ?>
                 </summary>
                 <ul>
