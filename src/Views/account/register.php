@@ -25,6 +25,6 @@ use App\Helper;
 
     <div>
         <p>Vous avez deja un compte ?</p>
-        <a href="/account/login/">Connectez-vous !</a>
+        <a href="/account/login/" class="link-purple">Connectez-vous !</a>
     </div>
 </form>

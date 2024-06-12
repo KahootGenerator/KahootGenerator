@@ -1,5 +1,21 @@
 @use '../abstracts/' as *;
 
+.kahoot-infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2rem 0;
+    h2 {
+        padding: 0.5rem;
+        font-size: $font-s;
+        border-style: solid;
+        border-color: $color-black;
+        border-width: $border-width-m;
+        border-radius: $border-radius-m;
+    }
+}
+
 .question-container {
     display: flex;
     flex-direction: column;
@@ -24,4 +40,8 @@
             }
         }
     }
+}
+
+.download-block {
+    margin-top: 2rem;
 }

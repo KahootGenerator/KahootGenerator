@@ -3,33 +3,41 @@
 namespace App;
 
 use App\Core\Route;
+use App\Controllers\ViewController;
 use Exception;
 
-class Router {
+class Router
+{
     private string $url;
     private array $routes = [];
 
-    public function __construct(string $url) {
+    public function __construct(string $url)
+    {
         $this->setUrl($url);
     }
 
-    public function getUrl(): string {
+    public function getUrl(): string
+    {
         return $this->url;
     }
 
-    public function setUrl(string $url): void {
+    public function setUrl(string $url): void
+    {
         $this->url = $url;
     }
 
-    public function getRoutes(): array {
+    public function getRoutes(): array
+    {
         return $this->routes;
     }
 
-    public function setRoutes(array $routes): void {
+    public function setRoutes(array $routes): void
+    {
         $this->routes = $routes;
     }
 
-    public function get(string $path, string $callable): Route {
+    public function get(string $path, string $callable): Route
+    {
         $route = new Route($path, $callable);
         $currentRoutes = $this->getRoutes();
 
@@ -42,7 +50,8 @@ class Router {
         return $route;
     }
 
-    public function post(string $path, string $callable): Route {
+    public function post(string $path, string $callable): Route
+    {
         $route = new Route($path, $callable);
         $currentRoutes = $this->getRoutes();
 
@@ -54,18 +63,19 @@ class Router {
 
         return $route;
     }
-    public function run(): Route | null {
-        if(!isset($this->getRoutes()[$_SERVER['REQUEST_METHOD']])) {
+    public function run(): Route|null
+    {
+        if (!isset($this->getRoutes()[$_SERVER['REQUEST_METHOD']])) {
             throw new Exception('REQUEST_METHOD does not exist');
         }
 
         foreach ($this->getRoutes()[$_SERVER['REQUEST_METHOD']] as $route) {
-            if($route->match($this->getUrl())) {
+            if ($route->match($this->getUrl())) {
                 return $route->call();
             }
         }
-        
-        require_once "Views/errors/404.php";
+        $vm = new ViewController();
+        $vm->render('errors/404', ['title' => '404', 'backgroundName' => 'generation']);
 
         return null;
     }

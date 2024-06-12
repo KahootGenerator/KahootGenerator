@@ -10,9 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid $color-black;
-  border-radius: $border-radius-m;
-  border-width: $border-width-m;
+  border: 1px solid $color-black !important;
+  border-radius: $border-radius-m !important;
+  border-width: $border-width-m !important;
   transition: all 0.8ms;
 
   &:active {
@@ -22,6 +22,7 @@
 
   @if ($color ==$color-red) {
     width: 50px;
+    padding: 0;
 
     & > img {
       height: 26px;
