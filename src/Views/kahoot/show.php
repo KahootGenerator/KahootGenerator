@@ -9,7 +9,6 @@ use App\Helper;
         <?php foreach ($kahoot->getQuestions() as $i => $question) { ?>
             <div class="question-block">
                 <article class="question-block-info">
-
                     <h2 class="question-block-title">Question <?= $i + 1; ?></h2>
                     <div id="<?= $question->getId(); ?>-question">
                         <div class="question-block-actions">

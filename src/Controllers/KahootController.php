@@ -10,16 +10,21 @@ use App\Validator;
 use App\Database\Managers\KahootManager;
 use App\Core\Controller;
 use App\Helper;
+use OpenAI;
 use Shuchkin\SimpleXLSXGen;
 
 final class KahootController extends Controller
 {
     protected Validator $validator;
     protected KahootManager $kahootManager;
+    protected OpenAI\Client $OpenAIClient;
     public function __construct()
     {
+        $api_token = getenv('API_TOKEN');
+
         $this->validator = new Validator();
         $this->kahootManager = new KahootManager();
+        $this->OpenAIClient = OpenAI::client($api_token);
     }
     public function generate(): void
     {
@@ -58,22 +63,22 @@ final class KahootController extends Controller
                             //Generate an uniq id for the kahoot
                             $kahoot_id = uniqid();
                             //Create the kahoot in the database
-                            $this->kahootManager->create($kahoot_id, $diff['id'], $lang['id'], $quiz->title);
+                            $this->kahootManager->create($kahoot_id, $diff['id'], $lang['id'], $quiz['title']);
                             //Instantiate the Managers for question and answer
                             $qm = new QuestionManager();
                             $am = new AnswerManager();
                             //For each generated questions
-                            foreach ($quiz->questions as $question) {
+                            foreach ($quiz["questions"] as $question) {
                                 //Generate an uniq id for the question
                                 $question_id = uniqid();
                                 //Create the question in the database
-                                $qm->create($question_id, $kahoot_id, $question->question);
+                                $qm->create($question_id, $kahoot_id, $question['question']);
                                 //For each generated answers
-                                foreach ($question->answers as $i => $answer) {
+                                foreach ($question['answers'] as $i => $answer) {
                                     //Generate an uniq id for the answer
                                     $answer_id = uniqid();
                                     //Create the answer in the database
-                                    $am->create($answer_id, $question_id, $answer, in_array($i, $question->correct_answers));
+                                    $am->create($answer_id, $question_id, $answer, in_array($i, $question['correct_answers']));
                                 }
                             }
                             header("Location: /kahoot/" . $kahoot_id);
@@ -160,16 +165,15 @@ final class KahootController extends Controller
         SimpleXLSXGen::fromArray($exel)->downloadAs('kahoot_' . date("d_m_Y") . '.xlsx');
     }
 
-    private function callAPI(array $data): array|\stdClass
+    private function callAPI(array $data): array
     {
-        //Load API KEY
         $env = Helper::loadEnv();
-        $apiKey = $env['API_TOKEN'];
-        //Load URL
-        $url = 'https://api.openai.com/v1/chat/completions';
+
+        $this->OpenAIClient = OpenAI::client($env['API_TOKEN']);
+
         //Generate the prompt
         $prompt = "
-        Crée un quiz en JSON en ".$data["lang"]." avec ".$data["quantity"]." questions sur le thème (".$data["theme"].") de difficulté (".$data["diff"]."), pour chaque question (120 caractères max), fournis 4 réponses ".(isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "")." (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers".(isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "")."). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
+        Crée un quiz en JSON en " . $data["lang"] . " avec " . $data["quantity"] . " questions sur le thème (" . $data["theme"] . ") de difficulté (" . $data["diff"] . "), pour chaque question (120 caractères max), fournis 4 réponses " . (isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "") . " (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers" . (isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "") . "). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
 
             {
                 \"title\": \"\",
@@ -184,59 +188,18 @@ final class KahootController extends Controller
             }
         ";
 
-        //Setup the request for API
-        $messages = [
-            ["role" => "system", "content" => "You are a helpful assistant."],
-            ["role" => "user", "content" => $prompt]
-        ];
-
-        $data = [
-            "model" => "gpt-3.5-turbo",
-            "messages" => $messages,
+        $gptResponse = $this->OpenAIClient->chat()->create([
+            'model' => 'gpt-3.5-turbo',
+            "messages" => [
+                ["role" => "system", "content" => "You are a helpful assistant."],
+                ["role" => "user", "content" => $prompt]
+            ],
             "max_tokens" => 4000,
-            "temperature" => 0.7,
-        ];
-
-        //Setup the request for cURL
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $apiKey,
+            "temperature" => 0.7
         ]);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
-        //Execute the request
-        $response = curl_exec($ch);
-        //Set an array empty
-        $res = [];
-
-        //If cURL errors
-        if (curl_errno($ch)) {
-            //Show cURL errors
-            $res["error"] = 'Erreur cURL : ' . curl_error($ch);
-        } else {
-            //Verify the http codes 
-            $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            //If correct
-            if ($httpStatusCode >= 200 && $httpStatusCode < 300) {
-                //Store the response in the array
-                $result = json_decode($response, true);
-                $str = $result['choices'][0]['message']['content'];
-                echo $str;
-                $res = json_decode($str);
-            } else {
-                //Show the API error
-                $res["error"] = 'Erreur HTTP : ' . $httpStatusCode . "\n" . $response;
-            }
-        }
-
-        //Close request
-        curl_close($ch);
+        $result = json_decode($gptResponse['choices'][0]['message']['content'], true);
         //Return response
-        return $res;
+        return $result;
     }
 }
