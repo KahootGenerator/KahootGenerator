@@ -4,10 +4,11 @@ const idKahoot = questionContainer.dataset.id_kahoot;
 
 showNewQuestion.addEventListener("click", () => {
   const numQuestion = questionContainer.children.length + 1;
-  const uniqueId = Date.now();
+  const uniqid = Date.now();
   // Create the main question block div
   let questionBlock = document.createElement(`div`);
   questionBlock.className = `question-block`;
+  questionBlock.dataset.uniqid = uniqid;
 
   // Create the article element for question info
   let article = document.createElement(`article`);
@@ -21,7 +22,7 @@ showNewQuestion.addEventListener("click", () => {
 
   // Create and append the div element with id
   let questionDiv = document.createElement(`div`);
-  questionDiv.id = `${uniqueId}-question`;
+  questionDiv.id = `${uniqid}-question`;
 
   // Create and append the div for question block actions
   let actionsDiv = document.createElement(`div`);
@@ -47,29 +48,19 @@ showNewQuestion.addEventListener("click", () => {
   }
 
   // Append radio inputs to the summary element
+  summary.appendChild(createRadio(`${uniqid}-time`, `${uniqid}-time-1`, `5s`));
+  summary.appendChild(createRadio(`${uniqid}-time`, `${uniqid}-time-2`, `10s`));
+  summary.appendChild(createRadio(`${uniqid}-time`, `${uniqid}-time-3`, `20s`));
   summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-1`, `5s`)
+    createRadio(`${uniqid}-time`, `${uniqid}-time-4`, `30s`, true)
+  );
+  summary.appendChild(createRadio(`${uniqid}-time`, `${uniqid}-time-5`, `60s`));
+  summary.appendChild(createRadio(`${uniqid}-time`, `${uniqid}-time-6`, `90s`));
+  summary.appendChild(
+    createRadio(`${uniqid}-time`, `${uniqid}-time-7`, `120s`)
   );
   summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-2`, `10s`)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-3`, `20s`)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-4`, `30s`, true)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-5`, `60s`)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-6`, `90s`)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-7`, `120s`)
-  );
-  summary.appendChild(
-    createRadio(`${uniqueId}-time`, `${uniqueId}-time-8`, `240s`)
+    createRadio(`${uniqid}-time`, `${uniqid}-time-8`, `240s`)
   );
 
   // Append the summary to details
@@ -90,14 +81,14 @@ showNewQuestion.addEventListener("click", () => {
   }
 
   // Append li elements to the ul
-  ul.appendChild(createLi(`${uniqueId}-time-1`, `5s`));
-  ul.appendChild(createLi(`${uniqueId}-time-2`, `10s`));
-  ul.appendChild(createLi(`${uniqueId}-time-3`, `20s`));
-  ul.appendChild(createLi(`${uniqueId}-time-4`, `30s`, `rgb(18, 152, 241)`));
-  ul.appendChild(createLi(`${uniqueId}-time-5`, `60s`));
-  ul.appendChild(createLi(`${uniqueId}-time-6`, `90s`));
-  ul.appendChild(createLi(`${uniqueId}-time-7`, `120s`));
-  ul.appendChild(createLi(`${uniqueId}-time-8`, `240s`));
+  ul.appendChild(createLi(`${uniqid}-time-1`, `5s`));
+  ul.appendChild(createLi(`${uniqid}-time-2`, `10s`));
+  ul.appendChild(createLi(`${uniqid}-time-3`, `20s`));
+  ul.appendChild(createLi(`${uniqid}-time-4`, `30s`, `rgb(18, 152, 241)`));
+  ul.appendChild(createLi(`${uniqid}-time-5`, `60s`));
+  ul.appendChild(createLi(`${uniqid}-time-6`, `90s`));
+  ul.appendChild(createLi(`${uniqid}-time-7`, `120s`));
+  ul.appendChild(createLi(`${uniqid}-time-8`, `240s`));
 
   // Append the ul to details
   details.appendChild(ul);
@@ -107,7 +98,7 @@ showNewQuestion.addEventListener("click", () => {
 
   // Create and append the delete link
   let deleteLink = document.createElement(`a`);
-  deleteLink.href = `/kahoot/${idKahoot}/deleteQuestion/${uniqueId}`;
+  deleteLink.href = `/kahoot/${idKahoot}/deleteQuestion/${uniqid}`;
   deleteLink.className = `button-red`;
   deleteLink.title = `Supprimer`;
 
@@ -133,7 +124,7 @@ showNewQuestion.addEventListener("click", () => {
 
   let questionTitle = document.createElement(`p`);
   questionTitle.className = `question-title`;
-  questionTitle.id = `${uniqueId}-title`;
+  questionTitle.id = `${uniqid}-title`;
   questionTitle.contentEditable = `plaintext-only`;
 
   questionTextDiv.appendChild(questionTitle);
@@ -190,10 +181,10 @@ showNewQuestion.addEventListener("click", () => {
   }
 
   // Append response divs to responses wrapper
-  responsesWrapper.appendChild(createResponse(uniqueId));
-  responsesWrapper.appendChild(createResponse(uniqueId));
-  responsesWrapper.appendChild(createResponse(uniqueId));
-  responsesWrapper.appendChild(createResponse(uniqueId));
+  responsesWrapper.appendChild(createResponse(uniqid));
+  responsesWrapper.appendChild(createResponse(uniqid));
+  responsesWrapper.appendChild(createResponse(uniqid));
+  responsesWrapper.appendChild(createResponse(uniqid));
 
   // Append the responses wrapper to question div
   questionTextDiv.appendChild(responsesWrapper);
@@ -203,4 +194,12 @@ showNewQuestion.addEventListener("click", () => {
 
   // Append the entire question block to the body (or any other container)
   questionContainer.appendChild(questionBlock);
+});
+
+// delete question
+const deleteQuestion = document.querySelector(
+  ".question-block[data-='uniqid']"
+);
+deleteQuestion.addEventListener("click", () => {
+  console.log(deleteQuestion);
 });
