@@ -29,7 +29,7 @@
   <h3 align="center">Kahoot Generator</h3>
 
   <p align="center">
-     An advanced Kahoot generator powered by ChatGPT-4o
+     An advanced Kahoot generator powered by ChatGPT
     <br />
     <a href="https://github.com/KahootGenerator/KahootGenerator/DOCUMENTATION.md"><strong>Explore the docs »</strong></a>
     <br />
