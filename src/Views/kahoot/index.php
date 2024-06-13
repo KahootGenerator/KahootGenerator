@@ -20,8 +20,8 @@ use App\Helper;
                 </div>
                 <div class="kahoot-card-line">
                     <p><?= $kahoot->getDate(); ?></p>
-                    <a href="/kahoot/<?= $kahoot->getId(); ?>" class="button-lightblue">Modifier</a>
-                    <a href="/kahoot/<?= $kahoot->getId(); ?>/download" class="button-purple">Télécharger</a>
+                    <a href="/kahoot/<?= $kahoot->getId(); ?>" class="button-lightblue button-xl">Modifier</a>
+                    <a href="/kahoot/<?= $kahoot->getId(); ?>/download" class="button-purple button-xl">Télécharger</a>
                 </div>
             </div>
         <?php } ?>

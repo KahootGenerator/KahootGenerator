@@ -27,7 +27,7 @@ use App\Helper;
 
             <label for="lang">Langue du questionnaire :</label>
 
-            <details class="select" id="lang">
+            <details class="select" id="lang" data-selected="Français">
                 <summary>
                     <?php foreach ($languages as $language) { ?>
                         <input type="radio" name="lang" id="lang_<?= Helper::escape($language->getId()) ?>"
@@ -38,7 +38,8 @@ use App\Helper;
                 <ul>
                     <?php foreach ($languages as $language) { ?>
                         <li>
-                            <label for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
+                            <label
+                                for="lang_<?= Helper::escape($language->getId()) ?>"><?= Helper::escape($language->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -53,7 +54,7 @@ use App\Helper;
         <div>
             <label for="diff">Difficulté :</label>
 
-            <details class="select" id="diff">
+            <details class="select" id="diff" data-selected="Aléatoire">
                 <summary>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <input type="radio" name="diff" id="diff_<?= Helper::escape($difficulty->getId()) ?>"
@@ -64,7 +65,8 @@ use App\Helper;
                 <ul>
                     <?php foreach ($difficulties as $difficulty) { ?>
                         <li>
-                            <label for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
+                            <label
+                                for="diff_<?= Helper::escape($difficulty->getId()) ?>"><?= Helper::escape($difficulty->getLibelle()) ?></label>
                         </li>
                     <?php } ?>
                 </ul>
@@ -91,7 +93,7 @@ use App\Helper;
     </div>
 
     <div>
-        <input type="submit" value="Valider" class="button-orange button-l">
+        <input type="submit" value="Valider" class="button-orange button-xl">
     </div>
 
 </form>
