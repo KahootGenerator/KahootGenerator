@@ -21,7 +21,7 @@ use App\Helper;
             <?= Helper::error("password"); ?>
         </span>
     </div>
-    <button class="button-orange" type="submit">S'inscrire</button>
+    <button class="button-orange button-xl" type="submit">S'inscrire</button>
 
     <div>
         <p>Vous avez deja un compte ?</p>
