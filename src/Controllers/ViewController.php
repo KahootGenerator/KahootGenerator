@@ -71,9 +71,6 @@ final class ViewController extends Controller
         //Get the kahoot
         $this->kahootManager = new KahootManager();
         $kahoot = $this->kahootManager->getOne($id);
-        if (empty($kahoot)) { // if the kahoot doesn't exist
-            header("Location: /");
-        }
 
         //Set title
         $this->setPageTitle("Votre Kahoot !");
