@@ -24,7 +24,7 @@ class DifficultyManager extends Manager
         return $difficulties;
     }
 
-    public function getOne(string $id)
+    public function find(int $id)
     {
         $sql = "SELECT * FROM difficulty WHERE id = :id";
 

@@ -42,4 +42,11 @@ class UserManager extends Manager
             throw $e;
         }
     }
+
+    public function delete(string $id): void {
+        $query = $this->_connexion->prepare('DELETE FROM user WHERE id = ?');
+        $query->execute([
+            $id
+        ]);
+    }
 }
