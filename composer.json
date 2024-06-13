@@ -5,6 +5,11 @@
             "App\\": "src/"
         }
     },
+    "scripts": {
+        "run-tests": [
+            "./vendor/bin/phpunit ./src/Test"
+        ]
+    },
     "authors": [
         {
             "name": "IMTR0J4N",
