@@ -33,6 +33,6 @@ final class DifficultyManagerTest extends TestCase
     #[DataProvider('returnedLibelleProvider')]
     public function testReturnedLibelle(int $id, string $libelle): void {
         $return = $this->manager->find($id);
-        $this->assertEquals($libelle, $return, 'Le libelle retourné n\'est pas le bon !');
+        $this->assertEquals($libelle, $return->getlibelle(), 'Le libelle retourné n\'est pas le bon !');
     }
 }
