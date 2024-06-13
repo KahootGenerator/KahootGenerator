@@ -45,7 +45,7 @@ final class QuestionManagerTest extends TestCase
     }
 
     private function clearDataBase(): void {
-        $this->manager->delete($this->kahoot_id);
+        $this->km->delete($this->kahoot_id);
         $this->um->delete('mince123');
         session_destroy();
     }
