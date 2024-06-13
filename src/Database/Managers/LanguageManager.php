@@ -24,7 +24,7 @@ class LanguageManager extends Manager
         return $languages;
     }
 
-    public function getOne(string $id)
+    public function find(int $id)
     {
         $sql = "SELECT * FROM language WHERE id = :id";
 
@@ -32,6 +32,10 @@ class LanguageManager extends Manager
 
         $query->execute(['id' => $id]);
 
-        return $query->fetch();
+        $match = $query->fetch();
+        if ($match) {
+            return new Language($match['id'], $match['libelle']);
+        }
+        return null;
     }
 }
