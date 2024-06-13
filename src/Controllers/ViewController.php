@@ -65,7 +65,7 @@ final class ViewController extends Controller
         //Get the kahoot
         $this->kahootManager = new KahootManager();
         $kahoot = $this->kahootManager->getOne($id);
-        
+
         //Set title
         $this->setPageTitle("Votre Kahoot !");
         
