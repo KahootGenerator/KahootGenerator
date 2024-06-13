@@ -18,7 +18,7 @@ use App\Helper;
             <h2>Titre : <?= $kahoot->getTitle(); ?></h2>
             <h2>Difficulté : <?= $kahoot->getDifficulty(); ?></h2>
         </div>
-        <div class="question-container">
+        <div class="question-container" data-id_kahoot="<?= $kahoot->getId(); ?>">
             <?php foreach ($kahoot->getQuestions() as $i => $question) { ?>
                 <div class="question-block">
                     <article class="question-block-info">
@@ -76,10 +76,12 @@ use App\Helper;
                 </div>
             <?php } ?>
         </div>
+        <button class="button-purple button-xl" id="createNewQuestion">Créer une nouvelle question</button>
         <div class="download-block">
-            <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
+            <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Télécharger votre
                 Kahoot !</a>
         </div>
     </div>
 <?php } ?>
+<script type="module" src="/js/newQuestion.js"></script>
 <script type="module" src="/js/components/select.js"></script>

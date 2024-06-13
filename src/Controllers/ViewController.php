@@ -44,6 +44,9 @@ final class ViewController extends Controller
     }
     function showRegister()
     {
+        if (isset($_SESSION['user'])) { // If the user is connected
+            header("Location: /");
+        }
         //set title
         $this->setPageTitle("Creation de votre compte !");
 
@@ -52,6 +55,9 @@ final class ViewController extends Controller
     }
     function showLogin()
     {
+        if (isset($_SESSION['user'])) { // If the user is connected
+            header("Location: /");
+        }
         //set title
         $this->setPageTitle("Connexion à votre compte !");
 

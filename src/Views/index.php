@@ -5,8 +5,7 @@
     <a href="/kahoot/generate/" class="button-purple button-l">Générér un kahoot</a>
     <article>
         <h2>Explication</h2>
-        <iframe src="https://www.youtube.com/embed/j_tHtq_r5ko?si=g8DKppG8lhpyVugI&amp;start=4"
-            title="YouTube video player"
+        <iframe src="https://www.youtube.com/embed/xfGwJHW-xy0?si=6QBnfdWTvQ0OcNLh" title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <p>Notre site web de générateur de Kahoot, spécialement conçu pour les étudiants, les professeurs et tous ceux
