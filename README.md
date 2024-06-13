@@ -22,7 +22,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/KahootGenerator/KahootGenerator">
     <img src="https://github.com/KahootGenerator/KahootGenerator/blob/c331d3fea2e6bf6712f101044865664956dcf2ff/public/img/logo.webp" alt="Logo" width="80" height="80">
   </a>
 
