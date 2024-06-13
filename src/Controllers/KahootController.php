@@ -40,9 +40,9 @@ final class KahootController extends Controller
             $_SESSION["old"] = $_POST;
 
             $dm = new DifficultyManager();
-            $diff = $dm->getOne($_POST["diff"]);
+            $diff = $dm->find($_POST["diff"]);
             $lm = new LanguageManager();
-            $lang = $lm->getOne($_POST["lang"]);
+            $lang = $lm->find($_POST["lang"]);
             if (!is_object($diff)) {
                 //Return an error if difficulty not found
                 $_SESSION["error"]["diff"] = "La difficulté choisie n'a pas été trouvée !";
