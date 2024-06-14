@@ -96,9 +96,9 @@ if (empty($kahoot)) {
                 </div>
             <?php } ?>
         </div>
-        <div class="buttons">
-            <button class="button-purple button-xl" id="createNewQuestion">Ajouter une nouvelle question</button>
-            <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Télécharger votre
+        <button class="button-lightblue button-xl" id="createNewQuestion">Créer une nouvelle question</button>
+        <div class="download-block">
+            <a class="button-orange" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
                 Kahoot !</a>
             <button class="button-purple" id="save">Sauvegarder vos modifications !</button>
         </div>
