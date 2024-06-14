@@ -15,7 +15,7 @@ if (empty($kahoot)) {
         </div>
     </div>
 <?php } else { ?>
-    <div class="main-container not-align-container" id="kahoot-id" data-kahoot-id="<?= $kahoot->getId(); ?>">
+    <div class="main-container not-align-container show-container" id="kahoot-id" data-kahoot-id="<?= $kahoot->getId(); ?>">
         <h1><?= $data["title"] ?></h1>
         <div class="kahoot-infos">
             <h2>Titre : <?= $kahoot->getTitle(); ?></h2>
@@ -54,7 +54,9 @@ if (empty($kahoot)) {
                         </div>
                     </article>
                     <div class="question">
-                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion()); ?></p>
+                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only">
+                            <?= Helper::escape($question->getQuestion()); ?>
+                        </p>
                         <div class="responses-wrapper">
                             <?php foreach ($question->getAnswers() as $answer) { ?>
                                 <div class="response">
