@@ -48,13 +48,17 @@ if (empty($kahoot)) {
                                         <?php } ?>
                                     </ul>
                                 </details>
-                                <a href="/kahoot/<?= $kahoot->getId(); ?>/deleteQuestion/<?= Helper::escape($question->getId()); ?>"
-                                    class="button-red" title="Supprimer"><img src="/img/utils/trash.svg" alt="Supprimer"></a>
+                                <button data-idkahoot="<?= $kahoot->getId(); ?>"
+                                    data-idquestion="<?= Helper::escape($question->getId()); ?>"
+                                    class="button-red buttonsDelete" title="Supprimer"><img src="/img/utils/trash.svg"
+                                        alt="Supprimer"></button>
                             </div>
                         </div>
                     </article>
                     <div class="question">
-                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion()); ?></p>
+                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only">
+                            <?= Helper::escape($question->getQuestion()); ?>
+                        </p>
                         <div class="responses-wrapper">
                             <?php foreach ($question->getAnswers() as $answer) { ?>
                                 <div class="response">
@@ -107,3 +111,4 @@ if (empty($kahoot)) {
 <script type="module" src="/js/newQuestion.js"></script>
 <script type="module" src="/js/saveKahoot.js"></script>
 <script type="module" src="/js/components/select.js"></script>
+<script type="module" src="/js/ajax/deleteQuestion.js"></script>
