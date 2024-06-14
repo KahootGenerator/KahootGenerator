@@ -15,7 +15,7 @@ if (empty($kahoot)) {
         </div>
     </div>
 <?php } else { ?>
-    <div class="main-container not-align-container" id="kahoot-id" data-kahoot-id="<?= $kahoot->getId(); ?>">
+    <div class="main-container not-align-container show-container" id="kahoot-id" data-kahoot-id="<?= $kahoot->getId(); ?>">
         <h1><?= $data["title"] ?></h1>
         <div class="kahoot-infos">
             <h2>Titre : <?= $kahoot->getTitle(); ?></h2>
