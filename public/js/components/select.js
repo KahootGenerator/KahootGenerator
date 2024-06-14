@@ -1,5 +1,8 @@
 const selects = document.querySelectorAll(".select");
 selects.forEach((select) => {
+  selectUtility(select);
+});
+export function selectUtility(select) {
   let selectObject = {
     name: select.children[0].children[0].name,
     labels: [],
@@ -24,4 +27,4 @@ selects.forEach((select) => {
       select.open = false;
     });
   });
-});
+}

@@ -70,19 +70,35 @@ if (empty($kahoot)) {
                                     <p class="response--text text-<?= $question->getId(); ?>" contenteditable="plaintext-only"
                                         id="<?= $answer->getId(); ?>-answer"><?= Helper::escape($answer->getLibelle());
                                           ?></p>
-                                    <button class="response--cross">
-                                        <img src="/img/utils/cross.svg" alt="Cross">
-                                    </button>
                                 </div>
-                            <?php } ?>
+                            <?php }
+                            if (count($question->getAnswers()) < 4) {
+                                // max answer - actual answer 
+                                $answer_missing = 4 - count($question->getAnswers());
+
+                                for ($i = 0; $i < $answer_missing; $i++) {
+                                    ?>
+                                    <div class="response">
+                                        <div class="response--checkbox">
+                                            <input type="checkbox" name="<?= uniqid(); ?>-answer" id="answer<?= uniqid(); ?>">
+                                            <label for="answer<?= uniqid(); ?>">
+                                                <img src="/img/utils/check.svg" alt="Checked">
+                                            </label>
+                                        </div>
+                                        <p class="response--text" contenteditable="plaintext-only" id="<?= uniqid(); ?>-answer"></p>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
-        <button class="button-lightblue button-xl" id="createNewQuestion">Créer une nouvelle question</button>
-        <div class="download-block">
-            <a class="button-orange" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
+        <div class="buttons">
+            <button class="button-purple button-xl" id="createNewQuestion">Ajouter une nouvelle question</button>
+            <a class="button-orange button-download" href="/kahoot/<?= $kahoot->getId() ?>/download">Télécharger votre
                 Kahoot !</a>
             <button class="button-purple" id="save">Sauvegarder vos modifications !</button>
         </div>
