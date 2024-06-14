@@ -79,14 +79,14 @@ use App\Helper;
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox1" class="checkbox" name="includeBools" value="">
+            <input type="checkbox" id="checkbox1" class="checkbox" name="includeBools" value="true">
             <label for="checkbox1"><img src="/img/utils/check.svg"></label>
             <label for="checkbox1">Inclure des vrais ou faux</label>
         </div>
     </div>
     <div class="form-field--full">
         <div class="form-field--checkbox">
-            <input type="checkbox" id="checkbox2" class="checkbox" name="multiCorrect" value="">
+            <input type="checkbox" id="checkbox2" class="checkbox" name="multiCorrect" value="true">
             <label for="checkbox2"><img src="/img/utils/check.svg"></label>
             <label for="checkbox2"> Plusieurs réponse correctes pour une question</label>
         </div>

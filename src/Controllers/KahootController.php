@@ -65,12 +65,12 @@ final class KahootController extends Controller
             if (!$this->validator->errors()) {
                 //Search the difficulty and the language in the database
                 //Prepare the data for the prompt
-                $data = ["theme" => $_POST['theme'], "quantity" => $_POST['quantity'], "lang" => $_POST['lang'], "diff" => $_POST['diff']];
-                if (isset($_POST['includeBools'])) {
+                $data = ["theme" => $_POST['theme'], "quantity" => $_POST['quantity'], "lang" => $lang->getlibelle(), "diff" => $diff->getlibelle()];
+                if (isset($_POST['includeBools']) && $_POST['includeBools'] == true) {
                     //If checked include questions true or false
                     $data["includeBools"] = true;
                 }
-                if (isset($_POST['multiCorrect'])) {
+                if (isset($_POST['multiCorrect']) && $_POST['multiCorrect'] == true) {
                     //If checked include questions with multiple correct answers
                     $data["multiCorrect"] = true;
                 }
@@ -231,29 +231,44 @@ final class KahootController extends Controller
 
         //Generate the prompt
         $prompt = "
-        Crée un quiz en JSON en " . $data["lang"] . " avec " . $data["quantity"] . " questions sur le thème (" . $data["theme"] . ") de difficulté (" . $data["diff"] . "), pour chaque question (120 caractères max), fournis 4 réponses " . (isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "") . " (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers" . (isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "") . "). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
+        , pour chaque question (120 caractères max), fournis 4 réponses " .
+            (isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "") . " (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers" . (isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "") . "). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
+        I want a quiz in " . $data["lang"] . " with " . $data["quantity"] . " questions on the theme " . $data["theme"] . " of difficulty " . $data["diff"] . ".";
 
-            {
-                \"title\": \"\",
-                \"questions\": [
-                    {
-                        \"question\": \"\",
-                        \"answers\": [\"\"],
-                        \"correct_answers\": [" . (isset($data["multiCorrect"]) ? "Index de la bonne réponse" : "Index de la(les) bonne(s) réponse(s)") . "]
-                    }
-                    ...
-                ]
-            }
-        ";
+        if (isset($data['includeBools']) && $data['includeBools']) {
+            $prompt .= "I want some true/false question in the quiz.";
+        }
+
+        if (isset($data['multiCorrect']) && $data['multiCorrect']) {
+            $prompt .= "I want some multiple correct answer for a question in the quiz.";
+        }
 
         $gptResponse = $this->OpenAIClient->chat()->create([
             'model' => 'gpt-3.5-turbo',
+            "response_format" => ["type" => "json_object"],
             "messages" => [
-                ["role" => "system", "content" => "You are a helpful assistant."],
-                ["role" => "user", "content" => $prompt]
+                [
+                    "role" => "system",
+                    "content" => "Your a professional multilanguage teacher with infinit knowledge. Your job is to create a quiz, with a title (max character for title is 20), for each question(max character for question is 120) you have to create 4 answer (max character for answer is 75) (if true/flas asked, generate only 2 answer). You will receve a theme, a lang, a number of question, a difficulty, if the user want multiple answer correct and if he want some true/false in the quiz. return the quiz with this json format : 
+                    {
+                        \"title\": \"\",
+                        \"questions\": [
+                            {
+                                \"question\": \"\",
+                                \"answers\": [\"\"],
+                                \"correct_answers\": [" . (isset($data["multiCorrect"]) ? "Index de la bonne réponse" : "Index de la(les) bonne(s) réponse(s)") . "]
+                            },{...}
+                        ]
+                    }
+                    "
+                ],
+                [
+                    "role" => "user",
+                    "content" => $prompt
+                ]
             ],
             "max_tokens" => 4000,
-            "temperature" => 0.7
+            "temperature" => 0.5
         ]);
 
         $result = json_decode($gptResponse['choices'][0]['message']['content'], true);
