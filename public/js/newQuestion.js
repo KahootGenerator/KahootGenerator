@@ -9,6 +9,7 @@ showNewQuestion.addEventListener("click", () => {
   // Create the main question block div
   let questionBlock = document.createElement(`div`);
   questionBlock.dataset.uniqid = uniqid;
+  questionBlock.id = uniqid;
   questionBlock.className = `question-block`;
 
   // Create the article element for question info
@@ -36,6 +37,7 @@ showNewQuestion.addEventListener("click", () => {
 
   // Create and append the summary element
   let summary = document.createElement(`summary`);
+  summary.id = `time-${uniqid}`;
 
   // Function to create input radio elements
   function createRadio(name, id, title, checked) {
@@ -128,7 +130,7 @@ showNewQuestion.addEventListener("click", () => {
 
   let questionTitle = document.createElement(`p`);
   questionTitle.className = `question-title`;
-  questionTitle.id = `${uniqid}-title`;
+  questionTitle.id = `title-${uniqid}`;
   questionTitle.contentEditable = `plaintext-only`;
 
   questionTextDiv.appendChild(questionTitle);
@@ -149,6 +151,7 @@ showNewQuestion.addEventListener("click", () => {
     input.type = `checkbox`;
     input.name = `${responseId}-answer`;
     input.id = `answer${responseId}`;
+    input.className = `checkbox-${uniqid}`;
     if (checked) input.checked = true;
 
     let label = document.createElement(`label`);
@@ -164,7 +167,8 @@ showNewQuestion.addEventListener("click", () => {
     responseDiv.appendChild(checkboxDiv);
 
     let responseTextP = document.createElement(`p`);
-    responseTextP.className = `response--text`;
+    responseTextP.className += `response--text`;
+    responseTextP.className += ` text-${uniqid}`;
     responseTextP.contentEditable = `plaintext-only`;
     responseTextP.id = `${responseId}-answer`;
     responseTextP.textContent = responseText;

@@ -77,15 +77,19 @@ if (empty($kahoot)) {
                                 $answer_missing = 4 - count($question->getAnswers());
 
                                 for ($i = 0; $i < $answer_missing; $i++) {
+                                    $answer_id = uniqid();
                                     ?>
                                     <div class="response">
                                         <div class="response--checkbox">
-                                            <input type="checkbox" name="<?= uniqid(); ?>-answer" id="answer<?= uniqid(); ?>">
-                                            <label for="answer<?= uniqid(); ?>">
+                                            <input type="checkbox"
+                                                class="checkbox-<?= $answer_id ?> checkbox-<?= $question->getId(); ?>"
+                                                name=" <?= $answer_id ?>-answer" id="answer<?= $answer_id ?>">
+                                            <label for="answer<?= $answer_id ?>">
                                                 <img src="/img/utils/check.svg" alt="Checked">
                                             </label>
                                         </div>
-                                        <p class="response--text" contenteditable="plaintext-only" id="<?= uniqid(); ?>-answer"></p>
+                                        <p class="response--text text-<?= $question->getId(); ?>" contenteditable="plaintext-only"
+                                            id="<?= $answer_id ?>-answer"></p>
                                     </div>
                                     <?php
                                 }
