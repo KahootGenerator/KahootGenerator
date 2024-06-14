@@ -1,4 +1,5 @@
 const ButtonsDelete = document.querySelectorAll(".buttonsDelete");
+const questionContainer = document.querySelectorAll(".question-container");
 ButtonsDelete.forEach((ButtonDelete) => {
   ButtonDelete.addEventListener("click", (e) => {
     e.preventDefault(); // dont submit the form
@@ -15,6 +16,13 @@ ButtonsDelete.forEach((ButtonDelete) => {
           // get the question block
           const question = document.getElementById(idQuestion);
           question.remove(); // delete element
+
+          const questions = document.querySelectorAll(".question-block");
+          if (questions.length === 0) {
+            const h2 = document.createElement("h2");
+            h2.textContent = "Vous n'avez aucune question de créée.";
+            questionContainer.appendChild(h2);
+          }
         }
       });
   });

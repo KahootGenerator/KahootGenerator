@@ -11,7 +11,7 @@ if (empty($kahoot)) {
         <div class="kahoot_doesnt_exist">
             <h1>Kahoot introuvable !</h1>
             <p>Ce kahoot a dû être supprimé ou n'est pas sur le compte que vous utilisez.</p>
-            <a href="/kahoot/" class="button-orange button-xl">Retourner vers vos Kahoot</a>
+            <a href="/kahoot/" class="button-orange button-l">Retourner vers vos Kahoot</a>
         </div>
     </div>
 <?php } else { ?>
@@ -56,9 +56,7 @@ if (empty($kahoot)) {
                         </div>
                     </article>
                     <div class="question">
-                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only">
-                            <?= Helper::escape($question->getQuestion()); ?>
-                        </p>
+                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion()); ?></p>
                         <div class="responses-wrapper">
                             <?php foreach ($question->getAnswers() as $answer) { ?>
                                 <div class="response">
