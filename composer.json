@@ -9,7 +9,10 @@
         "run-tests": [
             "./vendor/bin/phpunit ./src/Test"
         ],
-        "serve": "php -S 0.0.0.0:3000 -t public"
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:3000 -t public"
+        ]
     },
     "authors": [
         {
