@@ -1,4 +1,11 @@
-@use '../abstracts/' as *;
+@use "../abstracts/" as *;
+
+.kahoot_doesnt_exist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 
 .kahoot-infos {
     display: flex;
@@ -15,32 +22,33 @@
         border-width: $border-width-m;
         border-radius: $border-radius-m;
     }
+
 }
 
 .question-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 
-    .question-block {
-        .question-block-info {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+  .question-block {
+    .question-block-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
-            .question-block-title {
-                font-size: $font-s;
-            }
+      .question-block-title {
+        font-size: $font-s;
+      }
 
-            .question-block-actions {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
+      .question-block-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+      }
     }
+  }
 }
 
 .download-block {
@@ -53,3 +61,4 @@
         width: 285px;
     }
 }
+

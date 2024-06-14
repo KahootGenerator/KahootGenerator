@@ -22,10 +22,11 @@ use App\Helper;
             <?= Helper::error("password"); ?>
         </span>
     </div>
-    <button class="button-orange" type="submit">Connexion</button>
+    <button class="button-orange button-xl" type="submit">Connexion</button>
 
     <div>
         <p>Vous n'avez pas de compte ?</p>
         <a href="/account/register/" class="link-purple">Créer un compte</a>
     </div>
 </form>
+<script type="module" src="/js/validator-form/auth.js"></script>

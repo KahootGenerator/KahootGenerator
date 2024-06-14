@@ -2,11 +2,10 @@
     <h1><?= $data["title"] ?></h1>
     <p>Élaborez des questionnaires interactifs Kahoot en quelques minutes ! <br> Simplifiez-vous la vie grâce à notre
         application simple, dynamique et novatrice.</p>
-    <a href="/kahoot/generate/" class="button-purple">Générér un kahoot</a>
+    <a href="/kahoot/generate/" class="button-purple button-l">Générér un kahoot</a>
     <article>
         <h2>Explication</h2>
-        <iframe src="https://www.youtube.com/embed/j_tHtq_r5ko?si=g8DKppG8lhpyVugI&amp;start=4"
-            title="YouTube video player"
+        <iframe src="https://www.youtube.com/embed/xfGwJHW-xy0?si=6QBnfdWTvQ0OcNLh" title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <p>Notre site web de générateur de Kahoot, spécialement conçu pour les étudiants, les professeurs et tous ceux
@@ -26,6 +25,8 @@
         <div>
             <h3>Comment générer un Kahoot :</h3>
             <ol>
+                <li><a class="link-blue" href="/account/register/">Inscrivez-vous</a> ou <a class="link-blue"
+                        href="/account/login/">connectez-vous</a> à votre compte pour enregistré tous vos Kahoot</li>
                 <li>Accédez au formulaire de <a class="link-blue" href="/kahoot/generate/">génération de Kahoot</a>.
                 </li>
                 <li>Entrez votre sujet dans le premier champ.</li>
@@ -42,5 +43,5 @@
             </ol>
         </div>
     </article>
-    <a href="/kahoot/generate/" class="button-purple">Générér un kahoot</a>
+    <a href="/kahoot/generate/" class="button-purple button-l">Générér un kahoot</a>
 </section>

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use \Normalizer;
+
 /** Class Validator **/
 class Validator
 {
@@ -33,10 +35,10 @@ class Validator
         "url" => FILTER_VALIDATE_URL,
         "email" => FILTER_VALIDATE_EMAIL,
         "date" => "#^(\d{4})(\/|-)(0[0-9]|1[0-2])(\/|-)([0-2][0-9]|3[0-1])$#",
-        "alpha" => "#^[A-z]+$#",
-        "alphaNum" => "#^[A-z0-9]+$#",
-        "alphaNumDash" => "#^[A-z0-9-\|]+$#",
-        "alphaSpace" => "#^[A-z ]+$#",
+        "alpha" => "#^[A-zÀ-Ÿ]+$#",
+        "alphaNum" => "#^[A-z0-9À-Ÿ]+$#",
+        "alphaNumDash" => "#^[A-Za-z0-9À-Ÿ\-_|]+$#",
+        "alphaSpace" => "#^[A-zÀ-Ÿ ]+$#",
         "numeric" => "#^[0-9]+$#",
         "confirm" => ""
     ];
@@ -68,7 +70,7 @@ class Validator
             $changeRule = str_replace("ù", $repRule[1], $this->rules[$repRule[0]]);
             $changeMessage = str_replace("%^%", $repRule[1], $this->messages[$repRule[0]]);
 
-            if (!preg_match($changeRule, $this->data[$field])) {
+            if (!preg_match($changeRule, Normalizer::normalize($this->data[$field], Normalizer::FORM_C))) {
                 $this->errors = [$this->messages[$repRule[0]]];
                 $this->storeSession($field, $changeMessage);
             }
