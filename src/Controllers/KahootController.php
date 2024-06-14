@@ -40,9 +40,9 @@ final class KahootController extends Controller
             $_SESSION["old"] = $_POST;
 
             $dm = new DifficultyManager();
-            $diff = $dm->getOne($_POST["diff"]);
+            $diff = $dm->find($_POST["diff"]);
             $lm = new LanguageManager();
-            $lang = $lm->getOne($_POST["lang"]);
+            $lang = $lm->find($_POST["lang"]);
             if (!is_object($diff)) {
                 //Return an error if difficulty not found
                 $_SESSION["error"]["diff"] = "La difficulté choisie n'a pas été trouvée !";
@@ -113,11 +113,38 @@ final class KahootController extends Controller
     }
     public function updateKahoot(string $id): void
     {
+        //If user is signed in
+        if (isset($_SESSION['user'])) {
+
+            $questionManager = new QuestionManager();
+            $answerManager = new AnswerManager();
+
+            //delete all the questions of the kahoot
+            $questionManager->deleteAllFromKahoot($id);
+
+            foreach ($_POST as $item) {
+                //decode the item
+                $question = json_decode($item, true);
+
+                $question_id = uniqid();
+                //insert the question in the database
+                $questionManager->create($question_id, $id, $question["title"]);
+
+                foreach ($question["answers"] as $answer) {
+                    //insert the answer in the database
+                    $answerManager->create(uniqid(), $question_id, $answer[0], $answer[1]);
+                }
+                // echo $question["id_time"];
+            }
+        } else {
+            //Else 
+            header("Location: /account/login");
+        }
     }
     public function deleteKahoot(string $id): void
     {
         //If user is signed in
-        if(isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             //Delete the kahoot with the id
             $this->kahootManager->delete($id);
             header("Location: /kahoot");
@@ -126,13 +153,14 @@ final class KahootController extends Controller
             header("Location: /account/login");
         }
     }
-    public function deleteQuestion(string $id_kahoot, string $id): void {
+    public function deleteQuestion(string $id_kahoot, string $id): void
+    {
         //If user is signed in
-        if(isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             //Delete the kahoot with the id
             $qm = new QuestionManager();
             $qm->delete($id);
-            header("Location: /kahoot/".$id_kahoot);
+            header("Location: /kahoot/" . $id_kahoot);
         } else {
             //Else 
             header("Location: /account/login");

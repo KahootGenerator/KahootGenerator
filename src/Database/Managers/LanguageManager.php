@@ -24,7 +24,7 @@ class LanguageManager extends Manager
         return $languages;
     }
 
-    public function getOne(string $id)
+    public function find(int $id)
     {
         $sql = "SELECT * FROM language WHERE id = :id";
 

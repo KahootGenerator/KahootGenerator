@@ -35,10 +35,20 @@ class QuestionManager extends Manager
         ]);
     }
 
-    public function delete(string $id): void {
+    public function delete(string $id): void
+    {
         $query = $this->_connexion->prepare('DELETE FROM question WHERE id = ?');
         $query->execute([
             $id
         ]);
     }
+
+    public function deleteAllFromKahoot(string $id_kahoot): void
+    {
+        $query = $this->_connexion->prepare('DELETE FROM question WHERE id_kahoot = ?');
+        $query->execute([
+            $id_kahoot
+        ]);
+    }
+
 }

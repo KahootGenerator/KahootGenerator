@@ -5,6 +5,12 @@
             "App\\": "src/"
         }
     },
+    "scripts": {
+        "run-tests": [
+            "./vendor/bin/phpunit ./src/Test"
+        ],
+        "serve": "php -S 0.0.0.0:3000 -t public"
+    },
     "authors": [
         {
             "name": "IMTR0J4N",
