@@ -8,19 +8,21 @@
 }
 
 .kahoot-infos {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin: 2rem 0;
-  h2 {
-    padding: 0.5rem;
-    font-size: $font-s;
-    border-style: solid;
-    border-color: $color-black;
-    border-width: $border-width-m;
-    border-radius: $border-radius-m;
-  }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 2rem 0;
+
+    h2 {
+        padding: 0.5rem;
+        font-size: $font-s;
+        border-style: solid;
+        border-color: $color-black;
+        border-width: $border-width-m;
+        border-radius: $border-radius-m;
+    }
+
 }
 
 .question-container {
@@ -50,5 +52,13 @@
 }
 
 .download-block {
-  margin-top: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+
+    a,
+    button {
+        width: 285px;
+    }
 }
+
