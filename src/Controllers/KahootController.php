@@ -230,10 +230,7 @@ final class KahootController extends Controller
         $this->OpenAIClient = OpenAI::client($env['API_TOKEN']);
 
         //Generate the prompt
-        $prompt = "
-        , pour chaque question (120 caractères max), fournis 4 réponses " .
-            (isset($data['includeBools']) ? ", ou 2 si question vrai ou faux" : "") . " (75 caractères max) possibles et indique la bonne réponse (dans un tableau correct_answers" . (isset($data['multiCorrect']) ? ", certaines questions (au moins une) ont plusieurs réponses correctes" : "") . "). (Ne me donnes que le json, crée un titre de 20 caractères max). Utilise un JSON de ce type:
-        I want a quiz in " . $data["lang"] . " with " . $data["quantity"] . " questions on the theme " . $data["theme"] . " of difficulty " . $data["diff"] . ".";
+        $prompt = "I want a quiz in " . $data["lang"] . " with " . $data["quantity"] . " questions on the theme " . $data["theme"] . " of difficulty " . $data["diff"] . ".";
 
         if (isset($data['includeBools']) && $data['includeBools']) {
             $prompt .= "I want some true/false question in the quiz.";
