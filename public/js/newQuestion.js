@@ -197,6 +197,12 @@ showNewQuestion.addEventListener("click", () => {
         `.question-block[data-uniqid="${deleteQuestion.dataset.uniqid}"]`
       );
       questionContainer.removeChild(questionBlock);
+      const questions = document.querySelectorAll(".question-block");
+      if (questions.length === 0) {
+        const h2 = document.createElement("h2");
+        h2.textContent = "Vous n'avez aucune question de créée.";
+        questionContainer.appendChild(h2);
+      }
     });
   });
 });
