@@ -3,26 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Kahoot generator">
+    <!-- <meta name="keywords" content="Keywords relevant to your project"> -->
+    <!-- <meta name="author" content="Your name or the name of your organization"> -->
     <link rel="stylesheet" href="/style/main.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <title><?= isset($data['title']) ? "Kahoot Generator - " . $data['title'] : "Kahoot Generator" ?></title>
 </head>
 
-<body>
+<body
+    style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
     <header>
         <nav>
-            <img class="logo" src="/img/logo.png" alt="Logo">
+            <a class="logo" href="/">
+                <img src="/img/logo.webp" alt="Logo">
+            </a>
             <div>
                 <ul>
                     <li>
                         <a href="/" class="link">Accueil</a>
                     </li>
                     <li>
-                        <a href="/kahoot/generate/" class="link">Créer un kahoot</a>
+                        <a href="/kahoot/generate/" class="link">Créer un Kahoot</a>
                     </li>
+                    <?php if (isset($_SESSION['user'])) { ?>
+                        <li>
+                            <a href="/kahoot/" class="link">Mes Kahoot</a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <ul>
                     <?php if (!isset($_SESSION['user'])) { ?>
@@ -41,8 +51,7 @@
             </div>
         </nav>
     </header>
-    <main
-        style="background-image: url(/img/bg/<?= isset($data["backgroundName"]) ? $data["backgroundName"] : "kahoot" ?>.svg)">
+    <main>
         <?= $content ?>
     </main>
 </body>

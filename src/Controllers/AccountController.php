@@ -18,8 +18,8 @@ final class AccountController extends Controller
     public function register(): void
     {
         $this->validator->validate([
-            "username" => ["required", "alphaNum"],
-            "password" => ["required", "min:8"],
+            "username" => ["required", "alphaNumDash", "max:50"],
+            "password" => ["required", "min:8", "max:255"],
         ]);
         echo "hahaha";
         $_SESSION['old'] = $_POST;
@@ -47,8 +47,8 @@ final class AccountController extends Controller
     public function login(): void
     {
         $this->validator->validate([
-            "username" => ["required", "alphaNum"],
-            "password" => ["required", "min:8"],
+            "username" => ["required", "alphaNumDash", "max:50"],
+            "password" => ["required", "min:8", "max:255"],
         ]);
         $_SESSION['old'] = $_POST;
         if (!$this->validator->errors()) { // if the validator is not incorect

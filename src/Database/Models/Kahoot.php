@@ -3,24 +3,25 @@
 namespace App\Database\Models;
 
 use App\Database\Managers\KahootManager;
+use App\Database\Managers\QuestionManager;
 
 final class Kahoot
 {
     private string $id;
     private string $id_user;
-    private int $id_difficulty;
-    private int $id_language;
+    private string $difficulty;
+    private string $language;
     private string $title;
     private string $theme;
     private string $date;
     private array $questions;
 
-    public function __construct(string $id, string $id_user, int $id_difficulty, string $id_language, string $title, string $theme, string $date)
+    public function __construct(string $id, string $id_user, string $difficulty, string $language, string $title, string $theme, string $date)
     {
         $this->setId($id);
         $this->setIdUser($id_user);
-        $this->setIdDifficulty($id_difficulty);
-        $this->setIdLanguage($id_language);
+        $this->setDifficulty($difficulty);
+        $this->setLanguage($language);
         $this->setTitle($title);
         $this->setTheme($theme);
         $this->setDate($date);
@@ -36,14 +37,14 @@ final class Kahoot
         return $this->id_user;
     }
 
-    public function getIdDifficulty(): int
+    public function getDifficulty(): string
     {
-        return $this->id_difficulty;
+        return $this->difficulty;
     }
 
-    public function getIdLanguage(): int
+    public function getLanguage(): string
     {
-        return $this->id_language;
+        return $this->language;
     }
 
     public function getTitle(): string
@@ -58,7 +59,8 @@ final class Kahoot
 
     public function getDate(): string
     {
-        return $this->date;
+        $date = new \DateTime($this->date);
+        return $date->format(DATE_FORMAT);
     }
 
     public function getQuestions(): array
@@ -66,7 +68,7 @@ final class Kahoot
         if (isset($this->questions)) {
             return $this->questions;
         } else {
-            $manager = new KahootManager();
+            $manager = new QuestionManager();
             $this->questions = $manager->getQuestionsFormKahoot($this->id);
             return $this->questions;
         }
@@ -82,14 +84,14 @@ final class Kahoot
         $this->id_user = $id_user;
     }
 
-    public function setIdDifficulty(int $id_difficulty): void
+    public function setDifficulty(string $difficulty): void
     {
-        $this->id_difficulty = $id_difficulty;
+        $this->difficulty = $difficulty;
     }
 
-    public function setIdLanguage(int $id_language): void
+    public function setLanguage(string $language): void
     {
-        $this->id_language = $id_language;
+        $this->language = $language;
     }
 
     public function setTitle(string $title): void

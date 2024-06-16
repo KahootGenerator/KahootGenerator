@@ -4,22 +4,10 @@ require '../vendor/autoload.php';
 require '../src/Utils/Config.php';
 
 use App\Router;
-// use ScssPhp\ScssPhp\Compiler;
 use App\Database\Creator;
 
 $DatabaseCreator = new Creator();
 $DatabaseCreator->checkDatabase();
-
-// $scss = new Compiler();
-// $scss->setImportPaths('./style/scss');
-
-// try {
-//     $cssOutput = $scss->compileFile('./style/scss/main.scss');
-// } catch (\ScssPhp\ScssPhp\Exception\SassException $e) {
-//     throw new Error((string) $e);
-// }
-
-// file_put_contents('./style/main.css', $cssOutput->getCss());
 
 session_start();
 
@@ -33,6 +21,8 @@ $Router->post('/kahoot/generate/attempt/', 'KahootController@generate');
 $Router->get('/kahoot/:id/', 'ViewController@showOneKahoot');
 $Router->post('/kahoot/:id/update/', 'KahootController@updateKahoot');
 $Router->get('/kahoot/:id/delete/', 'KahootController@deleteKahoot');
+$Router->get('/kahoot/:id/deleteQuestion/:question', 'KahootController@deleteQuestion');
+$Router->get('/kahoot/:id/download/', 'KahootController@downloadKahoot');
 
 // Account
 $Router->get('/account/', 'ViewController@showAccount');

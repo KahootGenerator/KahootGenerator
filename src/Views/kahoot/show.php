@@ -1,105 +1,116 @@
-<div class="main-container">
-    <h1><?= $data["title"] ?></h1>
-    <div class="question-block">
-        <div class="question-block-info">
+<?php
+use App\Helper;
 
-            <p class="question-block-title">Question 1</p>
-            <div class="question-block" id="question1">
-                <div class="question-block-actions">
-                    <details class="select">
-                    <summary>
-                    <input type="radio" name="time-question1" id="time-question1,1" title="5s">
-                    <input type="radio" name="time-question1" id="time-question1,2" title="10s">
-                    <input type="radio" name="time-question1" id="time-question1,3" title="20s">
-                    <input type="radio" name="time-question1" id="time-question1,4" title="30s" checked>
-                    <input type="radio" name="time-question1" id="time-question1,5" title="60s">
-                    <input type="radio" name="time-question1" id="time-question1,6" title="120s">
-                    <input type="radio" name="time-question1" id="time-question1,7" title="240s">
-                    </summary>
-                    <ul>
-                    <li>
-                        <label for="time-question1,1">5s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,2">10s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,3">20s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,4">30s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,5">60s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,6">120s</label>
-                    </li>
-                    <li>
-                        <label for="time-question1,7">240s</label>
-                    </li>
-                    </ul>
-                </details>
-                <button class="button-red"><img src="/img/utils/trash.svg"></button>
-            </div>
+?>
+
+<?php
+// if the kahoot doesn't exist 
+if (empty($kahoot)) {
+    ?>
+    <div class="main-container align-container">
+        <div class="kahoot_doesnt_exist">
+            <h1>Kahoot introuvable !</h1>
+            <p>Ce kahoot a dû être supprimé ou n'est pas sur le compte que vous utilisez.</p>
+            <a href="/kahoot/" class="button-orange button-l">Retourner vers vos Kahoot</a>
         </div>
     </div>
-        <div class="question">
-            <p class="question-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus suscipit inventore aut corporis veritatis fuga voluptate esse iste quae accusantium quisquam, vero ut, tempore numquam officiis incidunt. Vero, illo aperiam?</p>
-            <div class="responses-wrapper">
-                <div class="response-container">
-                <input type="checkbox" name="" id="answer,1,1">
-                <label class="response" for="answer,1,1">
-                    <div class="response--checkbox">
-                    <img src="/img/utils/check.svg" alt="Checked">
+<?php } else { ?>
+    <div class="main-container not-align-container show-container" id="kahoot-id" data-kahoot-id="<?= $kahoot->getId(); ?>">
+        <h1><?= $data["title"] ?></h1>
+        <div class="kahoot-infos">
+            <h2>Titre : <?= $kahoot->getTitle(); ?></h2>
+            <h2>Difficulté : <?= $kahoot->getDifficulty(); ?></h2>
+        </div>
+        <div class="question-container">
+            <?php foreach ($kahoot->getQuestions() as $i => $question) { ?>
+                <div class="question-block" id="<?= $question->getId(); ?>">
+                    <article class="question-block-info">
+                        <h2 class="question-block-title">Question <?= $i + 1; ?></h2>
+                        <div id="<?= $question->getId(); ?>-question">
+                            <div class="question-block-actions">
+                                <details class="select">
+                                    <summary id="time-<?= $question->getId(); ?>">
+                                        <?php foreach ($times as $time) { ?>
+                                            <input type="radio" name="<?= $question->getId(); ?>-time"
+                                                data-id-time="<?= $time->getId() ?>"
+                                                id="<?= $question->getId(); ?>-time-<?= $time->getId() ?>"
+                                                title="<?= Helper::escape($time->getSeconds()) ?>s" <?php if (Helper::escape($time->getSeconds()) == 30) {
+                                                      echo "checked";
+                                                  } ?>>
+                                        <?php } ?>
+                                    </summary>
+                                    <ul>
+                                        <?php foreach ($times as $time) { ?>
+                                            <li>
+                                                <label
+                                                    for="<?= $question->getId(); ?>-time-<?= Helper::escape($time->getId()) ?>"><?= Helper::escape($time->getSeconds()) ?>s</label>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </details>
+                                <button data-idkahoot="<?= $kahoot->getId(); ?>"
+                                    data-idquestion="<?= Helper::escape($question->getId()); ?>"
+                                    class="button-red buttonsDelete" title="Supprimer"><img src="/img/utils/trash.svg"
+                                        alt="Supprimer"></button>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="question">
+                        <p class="question-title" id="title-<?= $question->getId(); ?>" contenteditable="plaintext-only"><?= Helper::escape($question->getQuestion()); ?></p>
+                        <div class="responses-wrapper">
+                            <?php foreach ($question->getAnswers() as $answer) { ?>
+                                <div class="response">
+                                    <div class="response--checkbox">
+                                        <input type="checkbox"
+                                            class="checkbox-<?= $answer->getId(); ?> checkbox-<?= $question->getId(); ?>"
+                                            name=" <?= $answer->getId(); ?>-answer" id="answer<?= $answer->getId(); ?>"
+                                            <?= $answer->getCorrect() ? "checked" : ""; ?>>
+                                        <label for="answer<?= $answer->getId(); ?>">
+                                            <img src="/img/utils/check.svg" alt="Checked">
+                                        </label>
+                                    </div>
+                                    <p class="response--text text-<?= $question->getId(); ?>" contenteditable="plaintext-only"
+                                        id="<?= $answer->getId(); ?>-answer"><?= Helper::escape($answer->getLibelle());
+                                          ?></p>
+                                </div>
+                            <?php }
+                            if (count($question->getAnswers()) < 4) {
+                                // max answer - actual answer 
+                                $answer_missing = 4 - count($question->getAnswers());
+
+                                for ($i = 0; $i < $answer_missing; $i++) {
+                                    $answer_id = uniqid();
+                                    ?>
+                                    <div class="response">
+                                        <div class="response--checkbox">
+                                            <input type="checkbox"
+                                                class="checkbox-<?= $answer_id ?> checkbox-<?= $question->getId(); ?>"
+                                                name=" <?= $answer_id ?>-answer" id="answer<?= $answer_id ?>">
+                                            <label for="answer<?= $answer_id ?>">
+                                                <img src="/img/utils/check.svg" alt="Checked">
+                                            </label>
+                                        </div>
+                                        <p class="response--text text-<?= $question->getId(); ?>" contenteditable="plaintext-only"
+                                            id="<?= $answer_id ?>-answer"></p>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
                     </div>
-                    <p class="response--p">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-                    </p>
-                    <button class="response--cross">
-                    <img src="/img/utils/cross.svg" alt="Cross">
-                    </button>
-                </label>
                 </div>
-                <div class="response-container">
-                <input type="checkbox" name="" id="answer,1,2">
-                <label class="response" for="answer,1,2">
-                    <div class="response--checkbox">
-                    <img src="/img/utils/check.svg" alt="Checked">
-                    </div>
-                    <p class="response--p">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-                    </p>
-                    <button class="response--cross">
-                    <img src="/img/utils/cross.svg" alt="Cross">
-                    </button>
-                </label>
-                </div>
-                <div class="response-container">
-                <input type="checkbox" name="" id="answer,1,3">
-                <label class="response" for="answer,1,3">
-                    <div class="response--checkbox">
-                    <img src="/img/utils/check.svg" alt="Checked">
-                    </div>
-                    <p class="response--p">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-                    </p>
-                    <button class="response--cross">
-                    <img src="/img/utils/cross.svg" alt="Cross">
-                    </button>
-                </label>
-                </div>
-                <div class="response-container">
-                <input type="checkbox" name="" id="answer,1,4">
-                <label class="response" for="answer,1,4">
-                    <div class="response--checkbox">
-                    <img src="/img/utils/check.svg" alt="Checked">
-                    </div>
-                    <p class="response--p">MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-                    </p>
-                    <button class="response--cross">
-                    <img src="/img/utils/cross.svg" alt="Cross">
-                    </button>
-                </label>
-                </div>
-            </div>
+            <?php } ?>
+        </div>
+        <button class="button-lightblue button-xl" id="createNewQuestion">Créer une nouvelle question</button>
+        <div class="download-block">
+            <a class="button-orange" href="/kahoot/<?= $kahoot->getId() ?>/download">Telecharger votre
+                Kahoot !</a>
+            <button class="button-purple" id="save">Sauvegarder vos modifications !</button>
         </div>
     </div>
-</div>
+<?php } ?>
+<script type="module" src="/js/newQuestion.js"></script>
+<script type="module" src="/js/saveKahoot.js"></script>
+<script type="module" src="/js/components/select.js"></script>
+<script type="module" src="/js/ajax/deleteQuestion.js"></script>

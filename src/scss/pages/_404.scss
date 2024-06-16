@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.error-404 {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 3rem;
+
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+}

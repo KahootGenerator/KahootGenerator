@@ -14,14 +14,41 @@ class QuestionManager extends Manager
         $this->getConnection();
     }
 
-    public function getQuestionsFormKahoot(string $id): Question|null
+    public function getQuestionsFormKahoot(string $id): array
     {
-        $query = $this->_connexion->prepare('SELECT question.id, id_kahoot, id_time, question FROM question JOIN kahoot ON question.id_kahoot = kahoot.id WHERE id_kahoot = :id');
+        $query = $this->_connexion->prepare('SELECT question.id, id_kahoot, time.seconds as time, question FROM question JOIN time ON question.id_time = time.id WHERE id_kahoot = :id');
         $query->execute(['id' => $id]);
-        $match = $query->fetch();
-        if ($match) {
-            return new Question($match["id"], $match["id_kahoot"], $match["id_time"], $match["question"]);
+        $questions = [];
+        while ($match = $query->fetch()) {
+            $questions[] = new Question($match["id"], $match["id_kahoot"], $match["time"], $match["question"]);
         }
-        return null;
+        return $questions;
     }
+
+    public function create(string $id, string $id_kahoot, string $question): void
+    {
+        $query = $this->_connexion->prepare('INSERT INTO question (id, id_kahoot, id_time, question) VALUES (?,?,4,?)');
+        $query->execute([
+            $id,
+            $id_kahoot,
+            $question
+        ]);
+    }
+
+    public function delete(string $id): void
+    {
+        $query = $this->_connexion->prepare('DELETE FROM question WHERE id = ?');
+        $query->execute([
+            $id
+        ]);
+    }
+
+    public function deleteAllFromKahoot(string $id_kahoot): void
+    {
+        $query = $this->_connexion->prepare('DELETE FROM question WHERE id_kahoot = ?');
+        $query->execute([
+            $id_kahoot
+        ]);
+    }
+
 }
