@@ -31,7 +31,7 @@
   <p align="center">
      An advanced Kahoot generator powered by ChatGPT
     <br />
-    <a href="https://github.com/KahootGenerator/KahootGenerator/blob/README.md"><strong>Explore the README</strong></a>
+    <a href="https://github.com/KahootGenerator/KahootGenerator/blob/main/README.md"><strong>Explore the README</strong></a>
     <br />
     <br />
     <a href="https://youtube.com">View Demo</a>
