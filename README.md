@@ -76,6 +76,10 @@ This project is developped in PHP [MVC Pattern](https://github.com/IMTR0J4N/MVC_
 * ![SCSS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 * ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 
+> [!WARNING]
+> You must use [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) extension if you are using VSCode. Otherwise, config your compiler to compile the file in `public/style/` directory or change the css path in `src/Views/layout/layout.php` for the project to work properly
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
