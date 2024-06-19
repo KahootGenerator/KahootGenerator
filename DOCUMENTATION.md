@@ -13,7 +13,7 @@
   <a href="https://github.com/KahootGenerator/KahootGenerator/issues" target="_blank">
     <img src="https://img.shields.io/github/issues/KahootGenerator/KahootGenerator?style=for-the-badge">
   </a>
-  <a href="https://github.com/KahootGenerator/KahootGenerator/blob/master/LICENSE.txt" target="_blank">
+  <a href="https://github.com/KahootGenerator/KahootGenerator/blob/main/LICENSE" target="_blank">
     <img src="https://img.shields.io/github/license/KahootGenerator/KahootGenerator?style=for-the-badge">
   </a>
 </div>
