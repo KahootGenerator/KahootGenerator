@@ -13,7 +13,7 @@
   <a href="https://github.com/KahootGenerator/KahootGenerator/issues" target="_blank">
     <img src="https://img.shields.io/github/issues/KahootGenerator/KahootGenerator?style=for-the-badge">
   </a>
-  <a href="https://github.com/KahootGenerator/KahootGenerator/blob/master/LICENSE.txt" target="_blank">
+  <a href="https://github.com/KahootGenerator/KahootGenerator/blob/main/LICENSE" target="_blank">
     <img src="https://img.shields.io/github/license/KahootGenerator/KahootGenerator?style=for-the-badge">
   </a>
 </div>
@@ -169,7 +169,7 @@ Project Link: [https://github.com/KahootGenerator/KahootGenerator](https://githu
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Here is the list of used website for our project :
 
 * [Img Shields](https://shields.io)
 * [Font Awesome](https://fontawesome.com)
